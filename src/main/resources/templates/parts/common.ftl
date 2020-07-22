@@ -14,8 +14,15 @@
 </head>
 <body>
 <#include "navbar.ftl"/>
-<div class="container mt-5">
+<div class="container-fluid">
+    <div class="row">
+
+        <#include "sideNavbar.ftl"/>
+
+        <div class="col-md-10 mt-3">
 <#nested>
+        </div>
+    </div>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

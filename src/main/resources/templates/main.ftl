@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as c>
+<#include "parts/security.ftl">
 
 <@c.page>
 
@@ -11,19 +12,30 @@
     </div>
 </div>
 
-
+<#if isAdmin>
     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         Add New Message
     </a>
 
-<div class="collapse mt-3" id="collapseExample">
+<div class="collapse mt-3 <#if message??>show</#if>" id="collapseExample">
     <div class="form-group ml-3">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group ml">
-                <input type="text" name="text" class="form-control" placeholder="Введите сообщение" />
+                <input type="text" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"
+                       placeholder="Введите сообщение" value="<#if message??>${message.text}</#if>" />
+                <#if textError??>
+                    <div class="invalid-feedback">
+                        ${textError}
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
-                <input type="text" name="tag" class="form-control" placeholder="Тэг">
+                <input type="text" name="tag" class="form-control" placeholder="Тэг" value="<#if message??>${message.tag}</#if>" />
+                <#if tagError??>
+                    <div class="invalid-feedback">
+                        ${tagError}
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
                 <div class="custom-file">
@@ -38,6 +50,7 @@
         </form>
     </div>
 </div>
+</#if>
 
 <div class="card-columns">
     <#list messages as message>
