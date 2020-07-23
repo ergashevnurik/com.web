@@ -2,10 +2,12 @@
 
 <@c.page>
 
-        <label class="col-sm-2 col-form-label"> UserName: ${username} </label>
-        <label class="col-sm-2 col-form-label"> First Name: ${firstName} </label>
-        <label class="col-sm-2 col-form-label"> Last Name: ${lastName} </label>
-        <label class="col-sm-2 col-form-label"> Middle Name: ${middleName} </label>
+        <div class="container">
+            <label class="col-sm-2 col-form-label"> UserName: ${username} </label>
+            <label class="col-sm-2 col-form-label"> First Name: ${firstName} </label>
+            <label class="col-sm-2 col-form-label"> Last Name: ${lastName} </label>
+            <label class="col-sm-2 col-form-label"> Middle Name: ${middleName} </label>
+        </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
