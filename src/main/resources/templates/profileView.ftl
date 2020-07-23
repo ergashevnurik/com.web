@@ -3,7 +3,6 @@
 <@c.page>
 
         <label class="col-sm-2 col-form-label"> UserName: ${username} </label>
-        <label class="col-sm-3 col-form-label"> Email: ${email} </label>
         <label class="col-sm-2 col-form-label"> First Name: ${firstName} </label>
         <label class="col-sm-2 col-form-label"> Last Name: ${lastName} </label>
         <label class="col-sm-2 col-form-label"> Middle Name: ${middleName} </label>
