@@ -26,6 +26,10 @@ public class User implements UserDetails {
     private String email;
     private String activationCode;
 
+    private String firstName;
+    private String lastName;
+    private String middleName;
+
     @ElementCollection (targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable (name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
@@ -114,5 +118,29 @@ public class User implements UserDetails {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 }

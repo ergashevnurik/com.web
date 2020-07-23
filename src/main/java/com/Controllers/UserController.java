@@ -3,7 +3,6 @@ package com.Controllers;
 
 import com.Domain.Role;
 import com.Domain.User;
-import com.Repos.UserRepo;
 import com.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -55,19 +51,35 @@ public class UserController {
         return "userList";
     }
 
-    @GetMapping("profile")
+    @GetMapping("profileView")
+    public String getProfileView(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
+        model.addAttribute("middleName", user.getMiddleName());
+        return "profileView";
+    }
+
+    @GetMapping("profileEdit")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
-        return "profile";
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
+        model.addAttribute("middleName", user.getMiddleName());
+        return "profileEdit";
     }
-    @PostMapping("profile")
-    public String updateProfile(@RequestParam String password,
+    @PostMapping("profileEdit")
+    public String updateProfile(@RequestParam String firstName,
+                                @RequestParam String lastName,
+                                @RequestParam String middleName,
+                                @RequestParam String password,
                                 @RequestParam String email,
                                 @AuthenticationPrincipal User user) {
 
-        userService.updateProfile(password, email, user);
+        userService.updateProfile(firstName, lastName, middleName, password, email, user);
 
-        return "redirect:/user/profile";
+        return "redirect:/user/profileView";
     }
 }

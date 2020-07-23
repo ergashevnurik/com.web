@@ -24,7 +24,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
 
-        <div class="ml-2"> <@l.logout /> </ul>
+        <div class="ml-2"> <@l.logout />
         </div>
     </div>
 </nav>

@@ -109,7 +109,7 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public void updateProfile(String password, String email, User user) {
+    public void updateProfile(String firstName, String lastName, String middleName, String password, String email, User user) {
         String userEmail = user.getEmail();
         boolean isEmailChanged = ((email != null && !email.equals(userEmail))
                 || (userEmail != null && !userEmail.equals(email)));
@@ -122,6 +122,13 @@ public class UserService implements UserDetailsService {
         }
         if (!StringUtils.isEmpty(password)) {
             user.setPassword(password);
+        }
+        if (!StringUtils.isEmpty(firstName) &&
+                !StringUtils.isEmpty(firstName) &&
+                    !StringUtils.isEmpty(firstName)) {
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setMiddleName(middleName);
         }
         userRepo.save(user);
 
