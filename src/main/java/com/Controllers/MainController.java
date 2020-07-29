@@ -33,11 +33,6 @@ public class MainController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @GetMapping("/")
-    public String getLoginPage() {
-        return "login";
-    }
-
     @GetMapping("/greeting")
     public String greeting(Map<String, Object> model, HttpServletRequest request) {
 

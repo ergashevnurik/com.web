@@ -36,7 +36,7 @@
                             </a>
                         </#if>
                         <a class="dropdown-item" href="#" style="color: #304D63"><i class="fas fa-cogs" style="color:#f43a09"></i>  Settings</a>
-                        <a class="dropdown-item" href="#" style="color: #304D63"><i class="fa fa-sign-out" style="color:#f43a09"></i>  Log out</a>
+                        <div class="dropdown-item"> <@l.logout /></div>
                     </div>
                 </div>
             </li>
@@ -44,7 +44,7 @@
                 <a href="#" class="ml-3 btn" style="font-size: 18px; color:#fff"><i class="fa fa-home"></i></a>
             </li>
         </ul>
-        <div class="ml-2"> <@l.logout /></div>
+
 
     </div>
 
