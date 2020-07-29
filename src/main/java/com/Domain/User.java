@@ -29,6 +29,7 @@ public class User implements UserDetails {
     private String firstName;
     private String lastName;
     private String middleName;
+    private String city;
 
     @ElementCollection (targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable (name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -142,5 +143,13 @@ public class User implements UserDetails {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

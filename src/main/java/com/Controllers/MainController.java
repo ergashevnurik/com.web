@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -32,7 +34,32 @@ public class MainController {
     private String uploadPath;
 
     @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
+    public String getLoginPage() {
+        return "login";
+    }
+
+    @GetMapping("/greeting")
+    public String greeting(Map<String, Object> model, HttpServletRequest request) {
+
+        Locale currentLocal = request.getLocale();
+        String countryCode = currentLocal.getCountry();
+        String countryName = currentLocal.getDisplayCountry();
+
+        String languageCode = currentLocal.getLanguage();
+        String langName = currentLocal.getDisplayLanguage();
+
+        System.out.println(countryCode + " " + countryName);
+        System.out.println(languageCode + " " + langName);
+
+        System.out.println("====================");
+
+        String[] languages = Locale.getISOLanguages();
+
+        for (String language : languages) {
+            Locale locale = new Locale(language);
+            System.out.println(language + " " + locale.getDisplayLanguage());
+        }
+
         return "greeting";
     }
 

@@ -51,35 +51,27 @@ public class UserController {
         return "userList";
     }
 
-    @GetMapping("profileView")
-    public String getProfileView(@AuthenticationPrincipal User user, Model model) {
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", user.getEmail());
-        model.addAttribute("firstName", user.getFirstName());
-        model.addAttribute("lastName", user.getLastName());
-        model.addAttribute("middleName", user.getMiddleName());
-        return "profileView";
-    }
-
-    @GetMapping("profileEdit")
+    @GetMapping("profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("lastName", user.getLastName());
         model.addAttribute("middleName", user.getMiddleName());
-        return "profileEdit";
+        model.addAttribute("city", user.getCity());
+        return "profile";
     }
-    @PostMapping("profileEdit")
+    @PostMapping("profile")
     public String updateProfile(@RequestParam String firstName,
+                                @RequestParam String city,
                                 @RequestParam String lastName,
                                 @RequestParam String middleName,
                                 @RequestParam String password,
                                 @RequestParam String email,
                                 @AuthenticationPrincipal User user) {
 
-        userService.updateProfile(firstName, lastName, middleName, password, email, user);
+        userService.updateProfile(firstName, lastName, middleName, city, password, email, user);
 
-        return "redirect:/user/profileView";
+        return "redirect:/user/profile";
     }
 }

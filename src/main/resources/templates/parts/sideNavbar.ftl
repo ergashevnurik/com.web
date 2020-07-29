@@ -1,6 +1,167 @@
 <#include "security.ftl">
 
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+<style>
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrapper {
+        position: relative;
+        top: 0;
+        height: 100vh;
+    }
+
+    .sidebar{
+        position: fixed;
+        top: 0;
+        height: 100%;
+        bottom: 0;
+        width: 260px;
+        left: 0;
+        z-index: 1030;
+        background-color: #f43a09;
+    }
+
+    .sidebar .logo {
+        position: relative;
+        padding: 0.5rem 0.7rem;
+        z-index: 4;
+    }
+
+    .sidebar .logo:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 15px;
+        height: 1px;
+        width: calc(100% - 30px);
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .sidebar .logo a.logo-normal {
+        display: block;
+        opacity: 1;
+        transform: translate3d(0px, 0, 0);
+    }
+
+    .sidebar .logo .simple-text {
+        text-transform: uppercase;
+        padding: 0.5rem 0;
+        display: block;
+        white-space: nowrap;
+        font-size: 1em;
+        color: #FFFFFF;
+        text-decoration: none;
+        font-weight: 400;
+        line-height: 30px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .sidebar .sidebar-wrapper {
+        position: relative;
+        height: calc(100vh - 75px);
+        overflow: auto;
+        width: 260px;
+        z-index: 4;
+        padding-bottom: 100px;
+    }
+
+    .sidebar .nav {
+        margin-top: 20px;
+        display: block;
+    }
+
+    .sidebar .nav li.active>a {
+        background-color: #FFFFFF;
+        box-shadow: 0 1px 15px 1px #FFFFFF;
+    }
+    .sidebar .nav li.active a,
+    .sidebar .nav li.active i {
+        color: #f43a09;
+    }
+    .sidebar .nav li:first-child>a {
+        margin: 0 15px;
+    }
+    .sidebar .nav li>a {
+        margin: 10px 15px 0;
+        border-radius: 30px;
+        color: blue;
+        display: block;
+        text-decoration: none;
+        position: relative;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-size: 1em;
+        color: white;
+        padding: 10px 8px;
+        line-height: 1.625rem;
+    }
+
+    .sidebar .nav i {
+        font-size: 20px;
+        float: left;
+        margin-right: 12px;
+        line-height: 30px;
+        width: 34px;
+        text-align: center;
+        color: #FFFFFF;
+        position: relative;
+    }
+
+    .sidebar .nav p {
+        margin: 0;
+        line-height: 30px;
+        position: relative;
+        display: block;
+        height: auto;
+        white-space: nowrap;
+    }
+
+
+
+    /* Constant Values */
+
+    h3 {
+        color: white;
+    }
+
+    h5 {
+        color: #fff;
+        font-size: 4rem;
+        font-weight: bolder;
+    }
+
+    /* Card-Body Paragraph */
+    .card-body p {
+        color: white;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f43a09;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #304D63;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #f43a09;
+    }
+
+</style>
+
+<#--<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
@@ -12,27 +173,166 @@
             <li class="nav-item">
                 <a class="nav-link" href="/main">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                    Messages
+                    Library
                 </a>
             </li>
-            <#if user??>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/profileView">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                        Profile
-                    </a>
-                </li>
-            </#if>
+
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/library">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                    Customers
+                    My Classes
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                     Reports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/upload">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Audio Podkast
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Chat
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Mnemonika
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Grade
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Video Lessons
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Ideas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Championship
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Training
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Shop
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</nav>-->
+
+
+<div class="sidebar">
+    <div class="logo">
+        <a href="#" class="simple-text logo-normal">
+            Acinonyx Soft
+        </a>
+    </div>
+    <div class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav">
+            <li class="active ">
+                <a href="#">
+                    <i class="fas fa-home"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <p>My Classes</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-headphones"></i>
+                    <p>Audio Podcast</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-comments"></i>
+                    <p>Chat</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <p>Mnemonika</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-book-open"></i>
+                    <p>Library</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-text-height"></i>
+                    <p>Grades</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-dice"></i>
+                    <p>Entertainment</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-video"></i>
+                    <p>Video Chat</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Ideas</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cube"></i>
+                    <p>Competition</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-text-height"></i>
+                    <p>Training</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Shop</p>
                 </a>
             </li>
             <#if isAdmin>
@@ -43,41 +343,6 @@
                     </a>
                 </li>
             </#if>
-
-
-        </ul>
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Saved reports</span>
-            <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-            </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    Current month
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    Last quarter
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    Social engagement
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    Year-end sale
-                </a>
-            </li>
         </ul>
     </div>
-</nav>
+</div>	<!-- Side Bar Ends Here -->
