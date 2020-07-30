@@ -1,7 +1,7 @@
 <#include "security.ftl">
 <#import "login.ftl" as l>
 
-<nav class="navbar navbar-expand-lg" style="width: 100%;background: #304D63;"><!-- Navbar Goes Here -->
+<nav class="navbar navbar-expand-lg" style="width: 100%;background: #1B3E59;"><!-- Navbar Goes Here -->
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 					    <span class="navbar-toggler-icon">

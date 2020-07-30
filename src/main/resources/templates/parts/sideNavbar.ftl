@@ -21,7 +21,7 @@
         width: 260px;
         left: 0;
         z-index: 1030;
-        background-color: #f43a09;
+        background-color: #1B3E59;
     }
 
     .sidebar .logo {
@@ -52,7 +52,7 @@
         display: block;
         white-space: nowrap;
         font-size: 1em;
-        color: #FFFFFF;
+        color: #F2F0F0;
         text-decoration: none;
         font-weight: 400;
         line-height: 30px;
@@ -75,12 +75,18 @@
     }
 
     .sidebar .nav li.active>a {
-        background-color: #FFFFFF;
-        box-shadow: 0 1px 15px 1px #FFFFFF;
+        background-color: #FFAC00;
+        box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
     }
+
+    .sidebar .nav li>a:hover {
+        background-color: #ffaa008f;
+        box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+    }
+
     .sidebar .nav li.active a,
     .sidebar .nav li.active i {
-        color: #f43a09;
+        color: #F2F0F0;
     }
     .sidebar .nav li:first-child>a {
         margin: 0 15px;
@@ -88,7 +94,6 @@
     .sidebar .nav li>a {
         margin: 10px 15px 0;
         border-radius: 30px;
-        color: blue;
         display: block;
         text-decoration: none;
         position: relative;
@@ -107,7 +112,7 @@
         line-height: 30px;
         width: 34px;
         text-align: center;
-        color: #FFFFFF;
+        color: #F2F0F0;
         position: relative;
     }
 
@@ -140,24 +145,34 @@
     }
 
     /* width */
-    ::-webkit-scrollbar {
-        width: 10px;
+    ::-webkit-scrollbar
+    {
+        width: 7px;
+        border: none;
     }
 
     /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f43a09;
+    ::-webkit-scrollbar-track
+    {
+        box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        border: none;
     }
 
     /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #304D63;
+    ::-webkit-scrollbar-thumb
+    {
+        border: none;
+        border-radius: 10px;
+        box-shadow: inset 3px 2px 6px rgba(80, 80, 80, 0.3);
+        background-color: #F2F0F0;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: #f43a09;
+        background: #f2f0f0b9;
     }
+
 
 </style>
 
