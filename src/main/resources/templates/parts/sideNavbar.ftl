@@ -79,7 +79,7 @@
         box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
     }
 
-    .sidebar .nav li>a:hover {
+    .sidebar .nav li>a:hover, .dropdown-container a:hover {
         background-color: #ffaa008f;
         box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
     }
@@ -125,6 +125,51 @@
         white-space: nowrap;
     }
 
+    .dropdown-btn {
+        text-decoration: none;
+        font-size: 20px;
+        color: #F2F0F0;
+        display: block;
+        border: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .dropdown-container {
+        display: none;
+        padding-left: 8px;
+    }
+
+    .dropdown-container a{
+        margin: 10px 15px 0;
+        border-radius: 30px;
+        color: #F2F0F0;
+        display: block;
+        text-decoration: none;
+        position: relative;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-size: 1em;
+        padding: 10px 8px;
+        line-height: 1.625rem;
+        text-align: center;
+    }
+
+    .fa-caret-down {
+        float: right;
+        margin-right: 0;
+    }
+
+    .dropdown-container p {
+        margin: 0;
+        line-height: 30px;
+        position: relative;
+        display: block;
+        height: auto;
+        white-space: nowrap;
+    }
 
 
     /* Constant Values */
@@ -285,6 +330,23 @@
                 </a>
             </li>
             <li>
+                <a class="dropdown-btn">
+                    <i class="fas fa-caret-down"></i>
+                    <p>Subjects</p>
+                </a>
+                <div class="dropdown-container">
+                    <a href="#">
+                        <p>Math</p>
+                    </a>
+                    <a href="#">
+                        <p>English</p>
+                    </a>
+                    <a href="#">
+                        <p>Russia</p>
+                    </a>
+                </div>
+            </li>
+            <li>
                 <a href="#">
                     <i class="fas fa-headphones"></i>
                     <p>Audio Podcast</p>
@@ -361,3 +423,21 @@
         </ul>
     </div>
 </div>	<!-- Side Bar Ends Here -->
+
+<script>
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+
+</script>
