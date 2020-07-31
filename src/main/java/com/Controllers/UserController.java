@@ -59,18 +59,26 @@ public class UserController {
         model.addAttribute("lastName", user.getLastName());
         model.addAttribute("middleName", user.getMiddleName());
         model.addAttribute("city", user.getCity());
+        model.addAttribute("district", user.getDistrict());
+        model.addAttribute("nickname", user.getNickname());
+        model.addAttribute("status", user.getStatus());
+        model.addAttribute("age", user.getAge());
         return "profile";
     }
     @PostMapping("profile")
     public String updateProfile(@RequestParam String firstName,
                                 @RequestParam String city,
+                                @RequestParam String district,
                                 @RequestParam String lastName,
+                                @RequestParam String status,
+                                @RequestParam Integer age,
+                                @RequestParam String nickname,
                                 @RequestParam String middleName,
                                 @RequestParam String password,
                                 @RequestParam String email,
                                 @AuthenticationPrincipal User user) {
 
-        userService.updateProfile(firstName, lastName, middleName, city, password, email, user);
+        userService.updateProfile(firstName, lastName, middleName, age, status, nickname, district, city, password, email, user);
 
         return "redirect:/user/profile";
     }

@@ -8,7 +8,7 @@
     </head>
 
    <body>
-       <div class="m-3">
+       <div class="container mt-5">
            <#if Session?? && Session.SPRING_SECURITY_LAST_EXCEPTION??>
                <div class="alert alert-danger" role="alert">
                    ${Session.SPRING_SECURITY_LAST_EXCEPTION.message}

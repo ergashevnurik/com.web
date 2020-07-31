@@ -109,8 +109,10 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public void updateProfile(String firstName, String lastName, String city,
-                              String middleName, String password, String email, User user) {
+    public void updateProfile(String firstName, String lastName, String middleName, Integer age,
+                              String status, String nickname,
+                              String district, String city,
+                              String password, String email, User user) {
         String userEmail = user.getEmail();
         boolean isEmailChanged = ((email != null && !email.equals(userEmail))
                 || (userEmail != null && !userEmail.equals(email)));
@@ -127,11 +129,19 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(firstName) &&
                 !StringUtils.isEmpty(firstName) &&
                     !StringUtils.isEmpty(firstName) &&
-                        !StringUtils.isEmpty(city)) {
+                        !StringUtils.isEmpty(district) &&
+                            !StringUtils.isEmpty(nickname) &&
+                                !StringUtils.isEmpty(age) &&
+                                    !StringUtils.isEmpty(nickname) &&
+                                        !StringUtils.isEmpty(city)) {
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setMiddleName(middleName);
             user.setCity(city);
+            user.setDistrict(district);
+            user.setNickname(nickname);
+            user.setAge(age);
+            user.setStatus(status);
         }
         userRepo.save(user);
 

@@ -180,8 +180,8 @@
 
     h5 {
         color: #fff;
-        font-size: 4rem;
-        font-weight: bolder;
+        font-size: 2.5rem;
+        font-weight: 800;
     }
 
     /* Card-Body Paragraph */
@@ -318,7 +318,7 @@
     <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
             <li class="active ">
-                <a href="#">
+                <a href="/dashboard">
                     <i class="fas fa-home"></i>
                     <p>Dashboard</p>
                 </a>
@@ -332,18 +332,29 @@
             <li>
                 <a class="dropdown-btn">
                     <i class="fas fa-caret-down"></i>
-                    <p>Subjects</p>
+                        <p>Subjects</p>
                 </a>
                 <div class="dropdown-container">
-                    <a href="#">
-                        <p>Math</p>
-                    </a>
-                    <a href="#">
-                        <p>English</p>
-                    </a>
-                    <a href="#">
-                        <p>Russia</p>
-                    </a>
+                    <#if isMath>
+                        <a href="#">
+                            <p>Math</p>
+                        </a>
+                    </#if>
+                    <#if isEnglish>
+                        <a href="#">
+                            <p>English</p>
+                        </a>
+                    </#if>
+                    <#if isRussian>
+                        <a href="#">
+                            <p>Russia</p>
+                        </a>
+                    </#if>
+                    <#if isPhysics>
+                        <a href="#">
+                            <p>Physics</p>
+                        </a>
+                    </#if>
                 </div>
             </li>
             <li>
@@ -365,7 +376,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/main">
                     <i class="fas fa-book-open"></i>
                     <p>Library</p>
                 </a>
@@ -413,10 +424,10 @@
                 </a>
             </li>
             <#if isAdmin>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        User List
+                <li>
+                    <a href="/user">
+                        <i class="fas fa-users"></i>
+                        <p>User List</p>
                     </a>
                 </li>
             </#if>

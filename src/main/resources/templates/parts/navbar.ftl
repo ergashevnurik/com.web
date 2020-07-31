@@ -14,7 +14,7 @@
             <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0" method="get">
                     <input class="form-control mr-sm-2" type="text" value="${filter?ifExists}" placeholder="Search" aria-label="Search" name="filter">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
                 </form>
 
 
