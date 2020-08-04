@@ -1,5 +1,5 @@
 $.ajax({
-    url: dashboard,
+    url: 'dashboard',
     success: function (result) {
         var months = JSON.parse(result).months;
         var subscribers = JSON.parse(result).subscribers;

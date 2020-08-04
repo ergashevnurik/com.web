@@ -81,81 +81,59 @@
                 Add New Book
             </a>
         </p>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                <form>
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"
-                                   placeholder="Введите сообщение" value="<#if message??>${message.text}</#if>" />
-                            <#if textError??>
-                                <div class="invalid-feedback">
-                                    ${textError}
-                                </div>
-                            </#if>
-                        </div>
-                        <div class="col">
-                            <input type="text" name="tag" class="form-control" placeholder="Тэг" value="<#if message??>${message.tag}</#if>" />
-                            <#if tagError??>
-                                <div class="invalid-feedback">
-                                    ${tagError}
-                                </div>
-                            </#if>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                                <option>Detective</option>
-                                <option>Love Story</option>
-                                <option>History</option>
-                                <option>.....</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <div class="custom-file">
-                                <input type="file" name="file" id="customFile"/>
-                                <label class="custom-file-label" for="customFile">Choose File</label>
+        <div class="collapse mt-3 <#if message??>show</#if>" id="collapseExample">
+            <div class="form-group ml-3">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group ml">
+                        <input type="text" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"
+                               placeholder="Введите сообщение" value="<#if message??>${message.text}</#if>" />
+                        <#if textError??>
+                            <div class="invalid-feedback">
+                                ${textError}
                             </div>
+                        </#if>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="tag" class="form-control" placeholder="Тэг" value="<#if message??>${message.tag}</#if>" />
+                        <#if tagError??>
+                            <div class="invalid-feedback">
+                                ${tagError}
+                            </div>
+                        </#if>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" name="file" id="customFile"/>
+                            <label class="custom-file-label" for="customFile">Choose File</label>
                         </div>
                     </div>
                     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                    <div class="form-group mt-3">
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">Добавить</button>
                     </div>
                 </form>
             </div>
         </div>
-
-    </div><!-- Collapse Ends Here Or The Form In Which Admin can Add Books -->
     </#if>
 
-    <div class="container-fluid"> <!-- Display Existing Books in Card Goes Here -->
-
-        <div class="row">
-                <div class="card-columns">
-                    <#list messages as message>
-                        <div class="card my-3" style="width: 18rem;">
-                            <#if message.filename??>
-                                <img src="/img/${message.filename}" class="card-img-top">
-                            </#if>
-                            <div class="m-2">
-                                <span>${message.text}</span>
-                                <i>${message.tag}</i>
-                            </div>
-                            <div class="card-footer text-muted">
-                                ${message.authorName}
-                            </div>
-
-                        </div>
-                    <#else>
-                        No message
-                    </#list>
+    <div class="card-columns">
+        <#list messages as message>
+            <div class="card my-3" style="width: 18rem;">
+                <#if message.filename??>
+                    <img src="/img/${message.filename}" class="card-img-top">
+                </#if>
+                <div class="m-2">
+                    <span>${message.text}</span>
+                    <i>${message.tag}</i>
+                </div>
+                <div class="card-footer text-muted">
+                    ${message.authorName}
                 </div>
 
-        </div>
-
+            </div>
+        <#else>
+            No message
+        </#list>
     </div> <!-- Display Existing Books in Card Ends Here -->
 
 

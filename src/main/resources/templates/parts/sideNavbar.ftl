@@ -1,4 +1,5 @@
 <#include "security.ftl">
+<#import "/spring.ftl" as spring/>
 
 <style>
     * {
@@ -320,7 +321,7 @@
             <li class="active ">
                 <a href="/dashboard">
                     <i class="fas fa-home"></i>
-                    <p>Dashboard</p>
+                    <p><@spring.message "menu.Dashboard"/></p>
                 </a>
             </li>
             <li>
@@ -336,24 +337,72 @@
                 </a>
                 <div class="dropdown-container">
                     <#if isMath>
-                        <a href="#">
+                        <a class="dropdown-btn">
+                            <i class="fas fa-caret-down"></i>
                             <p>Math</p>
                         </a>
+                        <div class="dropdown-container">
+                            <a href="/classes">
+                                <p>Assignment</p>
+                            </a>
+                            <a href="/classes">
+                                <p>Extra Classes</p>
+                            </a>
+                            <a href="/classes">
+                                <p>My Lesson</p>
+                            </a>
+                        </div>
                     </#if>
                     <#if isEnglish>
-                        <a href="#">
+                        <a class="dropdown-btn">
+                            <i class="fas fa-caret-down"></i>
                             <p>English</p>
                         </a>
+                        <div class="dropdown-container">
+                            <a href="/classes">
+                                <p>Assignment</p>
+                            </a>
+                            <a href="/classes">
+                                <p>Extra Classes</p>
+                            </a>
+                            <a href="/classes">
+                                <p>My Lesson</p>
+                            </a>
+                        </div>
                     </#if>
                     <#if isRussian>
-                        <a href="#">
+                        <a class="dropdown-btn">
+                            <i class="fas fa-caret-down"></i>
                             <p>Russia</p>
                         </a>
+                        <div class="dropdown-container">
+                            <a href="/classes">
+                                <p>Assignment</p>
+                            </a>
+                            <a href="/classes">
+                                <p>Extra Classes</p>
+                            </a>
+                            <a href="/classes">
+                                <p>My Lesson</p>
+                            </a>
+                        </div>
                     </#if>
                     <#if isPhysics>
-                        <a href="#">
+                        <a class="dropdown-btn">
+                            <i class="fas fa-caret-down"></i>
                             <p>Physics</p>
                         </a>
+                        <div class="dropdown-container">
+                            <a href="/classes">
+                                <p>Assignment</p>
+                            </a>
+                            <a href="/classes">
+                                <p>Extra Classes</p>
+                            </a>
+                            <a href="/classes">
+                                <p>My Lesson</p>
+                            </a>
+                        </div>
                     </#if>
                 </div>
             </li>
@@ -418,7 +467,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/shop">
                     <i class="fas fa-shopping-cart"></i>
                     <p>Shop</p>
                 </a>
