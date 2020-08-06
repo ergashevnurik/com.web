@@ -325,14 +325,8 @@
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <p>My Classes</p>
-                </a>
-            </li>
-            <li>
                 <a class="dropdown-btn">
-                    <i class="fas fa-caret-down"></i>
+                    <i class="fas fa-chalkboard-teacher"></i>
                         <p>Subjects</p>
                 </a>
                 <div class="dropdown-container">
