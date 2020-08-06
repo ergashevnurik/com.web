@@ -5,11 +5,10 @@ import com.Repos.ClassesRepo;
 import com.Services.ClassesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -17,6 +16,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/classes")
 public class ClassesController {
 
     @Autowired
@@ -28,13 +28,26 @@ public class ClassesController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @GetMapping("/classes")
-    public String getView(Model model) {
-        model.addAttribute("infos", classesService.findAll());
-        return "classes";
+    @GetMapping
+    public String getInitialView(Model model) {
+
+        model.addAttribute("messages", classesRepo.findAll());
+
+        return "classesView";
     }
 
-    @PostMapping("/classes")
+    @GetMapping("{classes}")
+    public String getInitialView(Model model,
+                                 @PathVariable String classes) {
+
+        EdsClasses classes1 = new EdsClasses();
+        model.addAttribute("messages", classes1);
+        model.addAttribute("infos", classesRepo.findAll());
+
+        return "classesTable";
+    }
+
+    @PostMapping
     public String add(@RequestParam String title, @RequestParam String bookTitle,
                       @RequestParam String description, @RequestParam Integer extendedDate,
                       @RequestParam Integer dueDate, @RequestParam String submissionMethod,
@@ -59,10 +72,12 @@ public class ClassesController {
 
         classesRepo.save(edsClasses);
         Iterable<EdsClasses> messages = classesService.findAll();
-        model.addAttribute("infos", messages);
 
-        return "classes";
+        model.addAttribute("messages", messages);
+
+        return "classesView";
     }
+
 
 
 }
