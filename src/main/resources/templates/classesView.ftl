@@ -3,6 +3,10 @@
 
 <@c.page>
 
+    <style> /* Oka Vse Dlya Vas */
+
+    </style>
+
     <#if isAdmin>
         <p>
             <a class="btn btn-primary mt-5" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -59,6 +63,12 @@
             </div>
         </div>
     </#if>
+
+
+    <div class="container-fluid"> <!-- Ot dushi Oka -->
+
+    </div>
+
 
     <table class="table table-striped mt-4">
 
