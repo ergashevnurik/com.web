@@ -6,6 +6,10 @@
                 <table class="table table-striped mt-4">
                     <#list infos as info>
                         <tr>
+                            <th>ID</th>
+                            <th>${info.id}</th>
+                        </tr>
+                        <tr>
                             <th scope="col">Title</th>
                             <th scope="row"><i>${info.title}</i></th>
                         </tr>

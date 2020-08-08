@@ -37,11 +37,9 @@ public class ClassesController {
     }
 
     @GetMapping("{classes}")
-    public String getInitialView(Model model,
-                                 @PathVariable String classes) {
+    public String getInitialView(@PathVariable EdsClasses classes, Model model) {
 
-        EdsClasses classes1 = new EdsClasses();
-        model.addAttribute("messages", classes1);
+        model.addAttribute("classes", classes);
         model.addAttribute("infos", classesRepo.findAll());
 
         return "classesTable";

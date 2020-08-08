@@ -327,7 +327,7 @@
             <li>
                 <a class="dropdown-btn">
                     <i class="fas fa-chalkboard-teacher"></i>
-                        <p>Subjects</p>
+                        <p><@spring.message "menu.Subjects"/></p>
                 </a>
                 <div class="dropdown-container">
                     <#if isMath>
