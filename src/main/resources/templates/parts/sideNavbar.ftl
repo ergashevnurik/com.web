@@ -431,7 +431,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/entertainment">
                     <i class="fas fa-dice"></i>
                     <p>Entertainment</p>
                 </a>

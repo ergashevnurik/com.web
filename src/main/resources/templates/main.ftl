@@ -2,66 +2,108 @@
 <#include "parts/security.ftl">
 
 <@c.page>
+    <style>
+        .carousel {
+            position: relative;
+        }
+        .carousel-control-prev, .carousel-control-next { /* Carousel Next Prev Goes Here */
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: unset;
+            left: unset;
+        }
+        .carousel-control-prev {
+            bottom: 15px !important;
+            right: 100px !important;
+        }
+        .carousel-control-next {
+            bottom: 15px !important;
+            right: 50px !important;
+        } /* Carousel Next Prev Ends Here */
+        .carousel-indicators { /* Carousel Indicators Goes Here */
+            right: unset;
+        }
+        .carousel-indicators li {
+            border-radius: 50%;
+            height: 3px;
+            width: 3px;
+        }
+        .carousel-indicators li.active {
+            border-radius: unset;
+            height: 3px;
+            width: 30px;
+        }/* Carousel Indicators Ends Here */
+        .carousel-caption { /* Carousel Caption Goes Here */
+            position: absolute;
+            top: 240px;
+            left: 50px;
+            right: unset;
+            bottom: unset;
+        }
+        .carousel-caption a {
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #000;
+            background: #fff;
+        }
+        /* Carousel Caption Ends Here */
+    </style>
 
-    <div id="carouselExampleIndicators" class="carousel slide mt-3" data-ride="carousel"><!-- Carousel Goes Here -->
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row">
-                    <div class="col-md-6" style="height: 400px;background: red;position: relative;">
-                        <img src="./img/book1.jpg" alt="" style="width: 300px;position: absolute;left: 140px;top: 80px;">
+    <div class="container-fluid" style="background-color: #1B3E59;width: 100%;padding: 50px;">
+        <h3 align="center">Library</h3>
+        <p align="center" style="color: #fff;">The Section of Library Give opportunity to Read and Improve Skills. Do Not Hesitate Download and
+        Have a Pleasure</p>
+    </div>
+
+    <div class="container-fluid" style="margin-top: -50px;">
+
+        <div id="demo" class="carousel slide" data-ride="carousel"><!-- Carousel Goes Here -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <#--<img src="la.jpg" alt="Los Angeles" width="1100" height="500">-->
+                    <div style="background: #191919; width: 100%;height: 500px;"></div>
+                    <div class="carousel-caption">
+                        <h3>Los Angeles</h3>
+                        <p>We had such a great time in LA!</p>
+                        <a href="#">Let's Go</a>
+                        <a href="#">Go On...</a>
                     </div>
-                    <div class="col-md-6" style="height: 400px;background: green;">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            <a href="#" class="btn btn-light">Download</a>
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <#--<img src="chicago.jpg" alt="Chicago" width="1100" height="500">-->
+                    <div style="background: #191919; width: 100%;height: 500px;"></div>
+                    <div class="carousel-caption">
+                        <h3>Chicago</h3>
+                        <p>Thank you, Chicago!</p>
+                        <a href="#">Let's Go</a>
+                        <a href="#">Go On...</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <#-- <img src="ny.jpg" alt="New York" width="1100" height="500">-->
+                    <div style="background: #191919; width: 100%;height: 500px;"></div>
+                    <div class="carousel-caption">
+                        <h3>New York</h3>
+                        <p>We love the Big Apple!</p>
+                        <a href="#">Let's Go</a>
+                        <a href="#">Go On...</a>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="row">
-                    <div class="col-md-6" style="height: 400px;background: red;position: relative;">
-                        <img src="./img/book2.jpg" alt="" style="width: 300px;position: absolute;left: 140px;top: 80px">
-                    </div>
-                    <div class="col-md-6" style="height: 400px;background: yellow;">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            <a href="#" class="btn btn-light">Download</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row">
-                    <div class="col-md-6" style="height: 400px;background: red;position: relative;">
-                        <img src="./img/book3.jpg" alt="" style="width: 300px;position: absolute;left: 140px;top: 80px">
-                    </div>
-                    <div class="col-md-6" style="height: 400px;background: green;">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            <a href="#" class="btn btn-light">Download</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div><!-- Carousel Ends Here -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div><!-- Carousel Ends Here -->
+
 
     <div class="form-row mt-4">
         <div class="form-group col-md-6">
@@ -136,6 +178,7 @@
         </#list>
     </div> <!-- Display Existing Books in Card Ends Here -->
 
+    </div>
 
 
 

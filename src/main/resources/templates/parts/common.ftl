@@ -22,7 +22,7 @@
     <#include "sideNavbar.ftl"/>
     <div class="container-fluid"  style="padding: 0;width: calc(100% - 260px);position: absolute;right: 0;">
     <#include "navbar.ftl"/>
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding: 0!important;">
 <#nested>
     </div>
 </div>
