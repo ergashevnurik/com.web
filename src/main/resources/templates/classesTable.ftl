@@ -3,7 +3,8 @@
 
 <@c.page>
 
-                <table class="table table-striped mt-4">
+    <div class="container-fluid">
+        <table class="table table-striped mt-4">
                     <#list infos as info>
                         <tr>
                             <th>ID</th>
@@ -56,7 +57,7 @@
                             No Message
                         </#list>
                 </table>
-
+    </div>
 
 
 

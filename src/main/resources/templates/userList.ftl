@@ -2,7 +2,8 @@
 
 <@c.page>
 
-<h3>List of Users</h3>
+<div class="container-fluid">
+    <h3>List of Users</h3>
 
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -13,8 +14,8 @@
         </div>
     </div>
 
-<table class="table table-striped">
-    <thead>
+    <table class="table table-striped">
+        <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
@@ -22,8 +23,8 @@
             <th scope="col">Password</th>
             <th scope="col"></th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <#list users as user>
             <tr>
                 <th scope="row">${user.id}</th>
@@ -33,6 +34,8 @@
                 <td><a href="/user/${user.id}">edit</a></td>
             </tr>
         </#list>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
 </@c.page>

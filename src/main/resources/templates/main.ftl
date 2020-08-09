@@ -6,6 +6,14 @@
         .carousel {
             position: relative;
         }
+
+        .carousel-item, .carousel-item .active { /* Carousel Item Goes Here */
+            border-radius: 25px;
+            background: #191919;
+            width: 100%;
+            height: 500px;
+        }/* Carousel Item Ends Here */
+
         .carousel-control-prev, .carousel-control-next { /* Carousel Next Prev Goes Here */
             position: absolute;
             width: 50px;
@@ -50,13 +58,7 @@
         /* Carousel Caption Ends Here */
     </style>
 
-    <div class="container-fluid" style="background-color: #1B3E59;width: 100%;padding: 50px;">
-        <h3 align="center">Library</h3>
-        <p align="center" style="color: #fff;">The Section of Library Give opportunity to Read and Improve Skills. Do Not Hesitate Download and
-        Have a Pleasure</p>
-    </div>
-
-    <div class="container-fluid" style="margin-top: -50px;">
+    <div class="container-fluid mt-3">
 
         <div id="demo" class="carousel slide" data-ride="carousel"><!-- Carousel Goes Here -->
             <ul class="carousel-indicators">
@@ -67,7 +69,6 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <#--<img src="la.jpg" alt="Los Angeles" width="1100" height="500">-->
-                    <div style="background: #191919; width: 100%;height: 500px;"></div>
                     <div class="carousel-caption">
                         <h3>Los Angeles</h3>
                         <p>We had such a great time in LA!</p>
@@ -77,7 +78,6 @@
                 </div>
                 <div class="carousel-item">
                     <#--<img src="chicago.jpg" alt="Chicago" width="1100" height="500">-->
-                    <div style="background: #191919; width: 100%;height: 500px;"></div>
                     <div class="carousel-caption">
                         <h3>Chicago</h3>
                         <p>Thank you, Chicago!</p>
@@ -87,7 +87,6 @@
                 </div>
                 <div class="carousel-item">
                     <#-- <img src="ny.jpg" alt="New York" width="1100" height="500">-->
-                    <div style="background: #191919; width: 100%;height: 500px;"></div>
                     <div class="carousel-caption">
                         <h3>New York</h3>
                         <p>We love the Big Apple!</p>

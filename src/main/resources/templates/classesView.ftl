@@ -105,7 +105,8 @@
 
     </style>
 
-    <#if isAdmin>
+    <div class="container-fluid">
+        <#if isAdmin>
         <p>
             <a class="btn btn-primary mt-5" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Add New Assignment
@@ -161,7 +162,7 @@
             </div>
         </div>
     </#if>
-
+    </div>
 
     <div class="container-fluid" style="background-color: #F2F0F0"> <!-- Ot dushi Oka Raxmat oka kattakon :) :)-->
 

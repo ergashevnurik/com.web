@@ -130,7 +130,7 @@
 
     </style>
 
-
+    <div class="container-fluid">
     <div class="main">
         <div class="container">
 
@@ -181,5 +181,5 @@
         </div>
     </div>
 
-
+    </div>
 </@c.page>
