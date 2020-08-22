@@ -11,18 +11,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/dashboard")
 public class DashboardController {
     @Autowired
     private DataDao dataDao;
 
-    @GetMapping("/dashboard")
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String getDashboard() {
         return "dashboard";
     }
 
     @ResponseBody
-    @GetMapping
+    @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
     public String getDataFromDb() {
         List<Data> dataList = dataDao.findAll();
         JsonArray jsonMonth = new JsonArray();

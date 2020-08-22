@@ -6,17 +6,16 @@ import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.objects.Document;
-import org.telegram.telegrambots.meta.api.objects.PhotoSize;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.api.objects.*;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.IOException;
 import java.security.Key;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -24,30 +23,134 @@ import java.util.List;
 
 public class TelegramBotController extends TelegramLongPollingBot {
 
-    /*private void log(String firstName, String lastName, String userId, String text, String bot_answer) {
+    private final String BOT_USERNAME = "MENZcompany_bot";
+    private final String BOT_TOKEN = "710487044:AAE1g-UCvoY_ACJ410QUFNlYxJZRJm4WUbE";
+
+    private void log(String firstName, String lastName, String userId, String text, String bot_answer) {
         System.out.println("\n-----------------------------------------");
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         System.out.println(dateFormat.format(date));
         System.out.print("Message From " + firstName + " " + lastName + " " + ". (id = " + userId + ") " + "\n Text " + text);
         System.out.println("\nBot Answer: Text - " + bot_answer);
-    }*/
+    }
 
-    @Override
-    public void onUpdateReceived(Update update) {
-        /*if (update.hasMessage() && update.getMessage().hasText()) {
-            String text = update.getMessage().getText();
-            long chatID = update.getMessage().getChatId();
-            SendMessage message = new SendMessage()
-                    .setChatId(chatID)
-                    .setText(text);
+    private void initializeBot(Update update) {
+        String message_text = update.getMessage().getText();
+        long cht_id = update.getMessage().getChatId();
+        SendMessage sendMessage = new SendMessage()
+                .setText("Welcome To Our Channel")
+                .setChatId(cht_id);
+
+        if (message_text.equals("/start") || message_text.toLowerCase().equals("start")) {
+
+            ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+            List<KeyboardRow> keyboardRowList = new ArrayList<>();
+            KeyboardRow keyboardButtons = new KeyboardRow();
+
+            keyboardButtons.add("O'zbek");
+            keyboardButtons.add("Русский");
+            keyboardButtons.add("English");
+
+            keyboardRowList.add(keyboardButtons);
+            replyKeyboardMarkup.setKeyboard(keyboardRowList);
+            sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
             try {
-                execute(message);
+                execute(sendMessage);
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
 
-        } else *//*if (update.hasMessage() && update.getMessage().hasPhoto()) {
+        }
+    }
+
+    private void repeatTheMessage(Update update) {
+        String message_text = update.getMessage().getText();
+        long chat_id = update.getMessage().getChatId();
+
+        SendMessage sendMessage = new SendMessage()
+                .setChatId(chat_id)
+                .setText(message_text);
+
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getCurrentDate() {
+        Date date = new Date();
+        String dateFormat = "hh:mm:ss a";
+        DateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+
+        String formattedDate = simpleDateFormat.format(date);
+        System.out.println("HH:MM:SS" + formattedDate);
+    }
+
+    public void sendMessageOnTime(Update update) {
+        String message_tex = update.getMessage().getText();
+        long chat_id = update.getMessage().getChatId();
+
+        String firstName = update.getMessage().getChat().getFirstName();
+        Date date = new Date();
+        String dateFormat = "hh:mm:ss a";
+        DateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+        String formattedDate = simpleDateFormat.format(date);
+
+            SendMessage sendMessage = new SendMessage()
+                    .setChatId(chat_id)
+                    .setText("Hi " + firstName + " " + formattedDate);
+
+            try {
+                execute(sendMessage);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+    }
+
+    private void redirectTheMessage(Update update) {
+        String message_text = update.getMessage().getText();
+        long chat_id = update.getMessage().getChatId();
+
+        SendMessage sendMessage = new SendMessage()
+                .setText(message_text)
+                .setChatId("Menz_Admin");
+
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onUpdateReceived(Update update) {
+
+        initializeBot(update);
+
+        if (update.hasMessage() && update.getMessage().hasText()) {
+
+            // First Name
+            String firstName = update.getMessage().getChat().getFirstName();
+            // Last Name
+            String lastName = update.getMessage().getChat().getLastName();
+            // User Name
+            String userName = update.getMessage().getChat().getUserName();
+            // User ID
+            long userId = update.getMessage().getChat().getId();
+            // Bot Answer
+            String answer = "Getting User Information";
+
+            log(firstName, lastName, userName, Long.toString(userId), answer);
+
+            sendMessageOnTime(update);
+
+        }
+
+       /* else *//**//*if (update.hasMessage() && update.getMessage().hasPhoto()) {
             long chat_id = update.getMessage().getChatId();
             List<PhotoSize> sendPhotos = update.getMessage().getPhoto();
 
@@ -155,7 +258,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
-        }*/
+        }*//*
 
         String message_text = update.getMessage().getText();
         long chat_id = update.getMessage().getChatId();
@@ -282,16 +385,16 @@ public class TelegramBotController extends TelegramLongPollingBot {
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
     }
 
     @Override
     public String getBotUsername() {
-        return "MENZcompany_bot";
+        return BOT_USERNAME;
     }
     @Override
     public String getBotToken() {
-        return "710487044:AAE1g-UCvoY_ACJ410QUFNlYxJZRJm4WUbE";
+        return BOT_TOKEN;
     }
 }

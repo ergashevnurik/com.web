@@ -46,10 +46,7 @@
                             <th scope="col">Attached Files</th>
                             <th scope="row">
                                 <#if info.filename??>
-                                    <video width="640" height="480" controls>
-                                        <source src="/img/${info.filename}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
+                                    <a href="/img/${info.filename}">${info.filename}</a>
                                 </#if>
                             </th>
                         </tr>

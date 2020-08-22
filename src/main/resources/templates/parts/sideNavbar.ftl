@@ -316,13 +316,13 @@
             <li class="active ">
                 <a href="/dashboard">
                     <i class="fas fa-home"></i>
-                    <p><@spring.message "menu.Dashboard"/></p>
+                    <p>Dashboard</p>
                 </a>
             </li>
             <li>
                 <a class="dropdown-btn">
                     <i class="fas fa-chalkboard-teacher"></i>
-                        <p><@spring.message "menu.Subjects"/></p>
+                        <p>My Subjects</p>
                 </a>
                 <div class="dropdown-container">
                     <#if isMath>
