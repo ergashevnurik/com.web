@@ -148,6 +148,12 @@
                             <label class="custom-file-label" for="customFile">Choose File</label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" name="fileImg" id="customFileImg"/>
+                            <label class="custom-file-label" for="customFileImg">Choose Image For Book</label>
+                        </div>
+                    </div>
                     <input type="hidden" name="_csrf" value="${_csrf.token}" />
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Добавить</button>
@@ -161,14 +167,17 @@
         <#list messages as message>
             <div class="card my-3" style="width: 18rem;">
                 <#if message.filename??>
-                    <img src="/img/${message.filename}" class="card-img-top">
+                    <img src="/img/${message.filenameImg}" class="card-img-top">
                 </#if>
                 <div class="m-2">
                     <span>${message.text}</span>
                     <i>${message.tag}</i>
                 </div>
                 <div class="card-footer text-muted">
-                    ${message.authorName}
+                    <i>${message.authorName}</i>
+                    <#if message.filename??>
+                        <a href="/img/${message.filename}" class="btn btn-primary">Download</a>
+                    </#if>
                 </div>
 
             </div>

@@ -18,6 +18,7 @@ public class Message {
     @Length(max = 255, message = "Tag is Too Long (more than 255")
     private String tag;
     private String filename;
+    private String filenameImg;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -75,5 +76,13 @@ public class Message {
 
     public String getFilename() {
         return filename;
+    }
+
+    public String getFilenameImg() {
+        return filenameImg;
+    }
+
+    public void setFilenameImg(String filenameImg) {
+        this.filenameImg = filenameImg;
     }
 }

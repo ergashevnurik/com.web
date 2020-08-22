@@ -81,7 +81,8 @@ public class MainController {
             @Valid Message message,
             BindingResult bindingResult,
             Model model,
-            @RequestParam("file") MultipartFile file
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("fileImg") MultipartFile fileImg
     ) throws IOException {
         message.setAuthor(user);
         if (bindingResult.hasErrors()) {
@@ -90,7 +91,7 @@ public class MainController {
             model.addAttribute("message", message);
         } else {
 
-            if (file != null && !file.getOriginalFilename().isEmpty()) {
+            if ((file != null && !file.getOriginalFilename().isEmpty()) && (fileImg != null && !fileImg.getOriginalFilename().isEmpty())) {
 
                 File fileDir = new File(uploadPath);
 
@@ -99,10 +100,14 @@ public class MainController {
                 }
 
                 String uuidFile = UUID.randomUUID().toString();
+                String uuidFileImg = UUID.randomUUID().toString();
                 String resultFileName = uuidFile + "." + file.getOriginalFilename();
+                String resultFileNameImg = uuidFileImg + "." + fileImg.getOriginalFilename();
 
                 file.transferTo(new File(uploadPath + "/" + resultFileName));
+                fileImg.transferTo(new File(uploadPath + "/" + resultFileNameImg));
                 message.setFilename(resultFileName);
+                message.setFilenameImg(resultFileNameImg);
             }
             model.addAttribute("message", null);
             messageRepo.save(message);
