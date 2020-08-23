@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -50,12 +51,14 @@ public class ClassesController {
     public String getInitialView(Model model) {
 
 
-        return listByPage(model, 1);
+        return listByPage(model, 1, "title", "asc");
     }
 
     @GetMapping("/page/{pageNumber}")
-    public String listByPage(Model model, @PathVariable("pageNumber") int currentPage) {
-        Page<EdsClasses> page = classesService.listAll(currentPage);
+    public String listByPage(Model model, @PathVariable("pageNumber") int currentPage,
+                             @Param("sortField") String sortField,
+                             @Param("sortDirection") String sortDirection) {
+        Page<EdsClasses> page = classesService.listAll(currentPage, sortField, sortDirection);
         long totalElements = page.getTotalElements();
         int totalPages = page.getTotalPages();
         List<EdsClasses> list = page.getContent();
@@ -65,6 +68,12 @@ public class ClassesController {
         model.addAttribute("totalPages", totalPages);
 
         model.addAttribute("messages", list);
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+
+        String reverseSortDirection = sortDirection.equals("asc") ? "desc" : "asc";
+        model.addAttribute("reverseSortDirection", reverseSortDirection);
 
         return "classesView";
     }
@@ -78,7 +87,7 @@ public class ClassesController {
         return "classesTable";
     }
 
-    @PostMapping("classes")
+    @PostMapping("/add-classes")
     public String add(@RequestParam String title, @RequestParam String bookTitle,
                       @RequestParam String description, @RequestParam Integer extendedDate,
                       @RequestParam Integer dueDate, @RequestParam String submissionMethod,

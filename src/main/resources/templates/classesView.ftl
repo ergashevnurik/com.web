@@ -30,7 +30,7 @@
         }*/
 
         body {
-            background-color: #F2F0F0;
+            background-color: #fff;
         }
 
         #tabs {
@@ -105,16 +105,19 @@
 
     </style>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="display: flex">
+
         <#if isAdmin>
         <p>
-            <a class="btn btn-primary mt-5" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Add New Assignment
+            <a class="btn btn-success mt-5 ml-3" style="border-radius: 50%;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <span class="font-size: 60px">
+                    <i class="fa fa-plus"></i>
+                </span>
             </a>
         </p>
-        <div class="collapse" id="collapseExample">
+        <div class="collapse mt-3" id="collapseExample">
             <div class="form-group ml-3">
-                <form method="post" enctype="multipart/form-data" action="classes">
+                <form method="post" enctype="multipart/form-data" action="/add-classes">
                     <div class="form-group ml">
                         <input type="text" name="title" class="form-control"
                                placeholder="Title" value="${title!''}" />
@@ -162,9 +165,20 @@
             </div>
         </div>
     </#if>
+
+        <div class="mt-5 ml-4">
+            <form class="form-inline my-2 my-lg-0" method="get">
+                <input class="form-control mr-sm-2" type="text" value="${filter?ifExists}" placeholder="Search" aria-label="Search" name="filter">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="mt-5 ml-auto">
+            Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}
+        </div>
     </div>
 
-    <div class="container-fluid" style="background-color: #F2F0F0"> <!-- Ot dushi Oka Raxmat oka kattakon :) :)-->
+    <div class="container-fluid" style="background-color: #fff"> <!-- Ot dushi Oka Raxmat oka kattakon :) :)-->
 
 
         <div class="container mt-5">
@@ -187,13 +201,13 @@
 
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Due Date</th>
-                            <th>Extended Date</th>
-                            <th>Submission Method</th>
-                            <th>Status</th>
-                            <th>Submission Format</th>
+                            <th><a href="/page/${currentPage}?sortField=id&sortDirection=${reverseSortDirection}">ID</a></th>
+                            <th><a href="/page/${currentPage}?sortField=title&sortDirection=${reverseSortDirection}">Title</a></th>
+                            <th><a href="/page/${currentPage}?sortField=dueDate&sortDirection=${reverseSortDirection }">Due Date</a></th>
+                            <th><a href="/page/${currentPage}?sortField=extendedDate&sortDirection=${reverseSortDirection }">Extended Date</a></th>
+                            <th><a href="/page/${currentPage}?sortField=submissionMethod&sortDirection=${reverseSortDirection }">Submission Method</a></th>
+                            <th><a href="/page/${currentPage}?sortField=status&sortDirection=${reverseSortDirection }">Status</a></th>
+                            <th><a href="/page/${currentPage}?sortField=submissionFormat&sortDirection=${reverseSortDirection }">Submission Format</a></th>
                         </tr>
                         </thead>
 
@@ -218,39 +232,38 @@
                     </table>
 
 
-                    <div>
-                        Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages} -
+                    <div class="ml-auto">
 
                         <#if (currentPage > 1)>
-                            <a href="/page/1">First</a>
+                            <a href="/page/1?sortField=${sortField}&sortDirection=${sortDirection}" class="btn btn-light">First</a>
                             <#else>
-                            <span>First</span>
+                            <span class="btn btn-primary">First</span>
                         </#if>
 
                         <#if (currentPage > 1)>
-                            <a href="/page/${currentPage - 1}">Previous</a>
+                            <a href="/page/${currentPage - 1}?sortField=${sortField}&sortDirection=${sortDirection}" class="btn btn-light">Previous</a>
                             <#else>
-                            <span>Previous</span>
+                            <span class="btn btn-primary">Previous</span>
                         </#if>
 
                         <#list 1..totalPages  as totalPage>
                             <#if totalPage != currentPage>
-                                <a href="/page/${totalPage}">${totalPage}</a>
+                                <a href="/page/${totalPage}?sortField=${sortField}&sortDirection=${sortDirection}" class="btn btn-light">${totalPage}</a>
                                 <#else>
-                                <span>${totalPage}</span>
+                                <span class="btn btn-primary">${totalPage}</span>
                             </#if>
                         </#list>
 
                         <#if (currentPage < totalPages)>
-                            <a href="/page/${currentPage + 1}">Next</a>
+                            <a href="/page/${currentPage + 1}?sortField=${sortField}&sortDirection=${sortDirection}" class="btn btn-light">Next</a>
                             <#else>
-                            <span>Next</span>
+                            <span class="btn btn-primary">Next</span>
                         </#if>
 
                         <#if (currentPage < totalPages)>
-                            <a href="/page/${totalPages}">Last</a>
+                            <a href="/page/${totalPages}?sortField=${sortField}&sortDirection=${sortDirection}" class="btn btn-light">Last</a>
                             <#else>
-                            <span>Last</span>
+                            <span class="btn btn-primary">Last</span>
                         </#if>
 
                     </div>

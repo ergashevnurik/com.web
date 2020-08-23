@@ -6,9 +6,11 @@ import com.Repos.ClassesServiceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,8 +27,10 @@ public class ClassesService implements ClassesServiceRepo {
        return classesRepo.findById(id);
     }
 
-    public Page<EdsClasses> listAll(int pageNumber) {
-        PageRequest pageable = PageRequest.of(pageNumber - 1, 5);
+    public Page<EdsClasses> listAll(int pageNumber, String sortField, String sortDirection) {
+        Sort sort = Sort.by(sortField);
+        sort = sortDirection.equals("asc") ? sort.ascending() : sort.descending();
+        PageRequest pageable = PageRequest.of(pageNumber - 1, 5, sort);
         return classesRepo.findAll(pageable);
     }
 
