@@ -66,7 +66,7 @@
                 <li data-target="#demo" data-slide-to="1"></li>
                 <li data-target="#demo" data-slide-to="2"></li>
             </ul>
-            <div class="carousel-inner">
+            <div class="carousel-inner" style="border-radius: 25px;">
                 <div class="carousel-item active">
                     <#--<img src="la.jpg" alt="Los Angeles" width="1100" height="500">-->
                     <div class="carousel-caption">
