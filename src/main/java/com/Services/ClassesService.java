@@ -4,6 +4,8 @@ import com.Domain.EdsClasses;
 import com.Repos.ClassesRepo;
 import com.Repos.ClassesServiceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -21,6 +23,15 @@ public class ClassesService implements ClassesServiceRepo {
 
     public Optional<EdsClasses> getClassesById(Long id) {
        return classesRepo.findById(id);
+    }
+
+    public Page<EdsClasses> listAll(int pageNumber) {
+        PageRequest pageable = PageRequest.of(pageNumber - 1, 5);
+        return classesRepo.findAll(pageable);
+    }
+
+    public EdsClasses get(Long id) {
+        return classesRepo.findById(id).get();
     }
 
 
