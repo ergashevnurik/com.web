@@ -177,6 +177,10 @@
             <a href="/classes/export" class="btn btn-success">Export to Pdf</a>
         </div>
 
+        <div class="mt-3 ml-3">
+            <a href="/classes/csv" class="btn btn-success">Export to CSV</a>
+        </div>
+
         <div class="mt-3 ml-auto">
             <p>Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
         </div>

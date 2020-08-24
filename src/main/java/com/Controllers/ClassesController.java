@@ -23,6 +23,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
 import java.awt.print.Pageable;
@@ -75,6 +78,36 @@ public class ClassesController {
 
         ClassesPdfExport classesPdfExport = new ClassesPdfExport(list);
         classesPdfExport.export(response);
+
+    }
+
+    @GetMapping("/classes/csv")
+    public void exportToCsv(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mmm:ss");
+        String currentDateTime = dateFormat.format(new Date());
+        String fileName = "classes" + currentDateTime + ".csv";
+        String headerkey = "Content-Desposition";
+        String headerValue = "attachment; filename=" + fileName;
+
+        response.setHeader(headerkey, headerValue);
+
+        List<EdsClasses> list = (List<EdsClasses>) classesRepo.findAll();
+
+        ICsvBeanWriter csvBeanWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+
+        String[] csvHeader = {"ID", "Title", "Due Date", "Extended Date", "Status", "Submission Method", "Submission Format"};
+        String[] nameMapping = {"id", "title", "dueDate", "extendedDate", "status", "submissionMethod", "submissionFormat"};
+
+        csvBeanWriter.writeHeader(csvHeader);
+
+        for (EdsClasses edsClasses : list) {
+            csvBeanWriter.write(edsClasses, nameMapping);
+        }
+
+        csvBeanWriter.close();
+
 
     }
 
