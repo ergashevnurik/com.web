@@ -105,11 +105,11 @@
 
     </style>
 
-    <div class="container-fluid" style="display: flex">
+    <div class="container" style="display: flex">
 
         <#if isAdmin>
         <p>
-            <a class="btn btn-success mt-5 ml-3" style="border-radius: 50%;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-success mt-3 ml-3" style="border-radius: 50%;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <span class="font-size: 60px">
                     <i class="fa fa-plus"></i>
                 </span>
@@ -166,19 +166,19 @@
         </div>
     </#if>
 
-        <div class="mt-5 ml-4">
+        <div class="mt-3 ml-3">
             <form class="form-inline my-2 my-lg-0" method="get">
                 <input class="form-control mr-sm-2" type="text" value="${filter?ifExists}" placeholder="Search" aria-label="Search" name="filter">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
 
-        <div class="mt-5 ml-3">
+        <div class="mt-3 ml-3">
             <a href="/classes/export" class="btn btn-success">Export to Pdf</a>
         </div>
 
-        <div class="mt-5 ml-auto">
-            Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}
+        <div class="mt-3 ml-auto">
+            <p>Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
         </div>
 
     </div>

@@ -4,15 +4,15 @@ import com.Domain.Message;
 import com.Domain.User;
 import com.Repos.MessageRepo;
 import com.Repos.UserRepo;
+import com.Services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +29,9 @@ public class MainController {
     @Autowired
     private MessageRepo messageRepo;
     private UserRepo userRepo;
+
+    @Autowired
+    private MessageService messageService;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -59,23 +62,40 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        Iterable<Message> messages = messageRepo.findAll();
+    public String getInitialView(Model model) {
+        return main("",1, model);
+    }
+
+    @GetMapping("/main/{pageNumber}")
+    public String main(@RequestParam(required = false, defaultValue = "") String filter,
+                       @PathVariable("pageNumber") int currentPage, Model model) {
+        Page<Message> message = messageService.listAll(currentPage);
+        int totalPages = message.getTotalPages();
+        long totalElements = message.getTotalElements();
+        List<Message> list = message.getContent(); // Todo this because the getContent does not work
+
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalElements", totalElements);
+        model.addAttribute("messages", list); // Todo this because the getContent does not work
+
 
         if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
+            list = messageRepo.findByTag(filter);
         } else {
-            messages = messageRepo.findAll();
+            list = (List<Message>) messageRepo.findAll();
         }
 
-        model.addAttribute("messages", messages);
+
+        model.addAttribute("messages", list);
         model.addAttribute("filter", filter);
+
 
         return "main";
     }
 
 
-    @PostMapping("/main")
+    @PostMapping("/add-book")
     public String add(
             @AuthenticationPrincipal User user,
             @Valid Message message,
@@ -117,7 +137,7 @@ public class MainController {
 
         model.addAttribute("messages", messages);
 
-        return "main";
+        return "redirect:/main";
     }
 
 }

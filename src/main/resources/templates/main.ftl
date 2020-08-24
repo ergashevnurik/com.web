@@ -60,6 +60,74 @@
 
     <div class="container-fluid mt-3">
 
+        <div class="container" style="display: flex;">
+
+            <div>
+                <#if isAdmin>
+                    <p>
+                        <a class="btn btn-success" data-toggle="collapse" style="border-radius: 50%" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="font-size: 60px">
+                                <i class="fa fa-plus"></i>
+                            </span>
+                        </a>
+                    </p>
+                    <div class="collapse mt-3 <#if message??>show</#if>" id="collapseExample">
+                        <div class="form-group ml-3">
+                            <form method="post" enctype="multipart/form-data" action="/add-book">
+                                <div class="form-group ml">
+                                    <input type="text" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"
+                                           placeholder="Введите сообщение" value="<#if message??>${message.text}</#if>" />
+                                    <#if textError??>
+                                        <div class="invalid-feedback">
+                                            ${textError}
+                                        </div>
+                                    </#if>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="tag" class="form-control" placeholder="Тэг" value="<#if message??>${message.tag}</#if>" />
+                                    <#if tagError??>
+                                        <div class="invalid-feedback">
+                                            ${tagError}
+                                        </div>
+                                    </#if>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="file" id="customFile"/>
+                                        <label class="custom-file-label" for="customFile">Choose File</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="fileImg" id="customFileImg"/>
+                                        <label class="custom-file-label" for="customFileImg">Choose Image For Book</label>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Добавить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </#if>
+            </div>
+
+                <div class="ml-3">
+                    <div class="form-group">
+                        <form method="get" action="/main/${currentPage}" class="form-inline">
+                            <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search By Tag">
+                            <button type="submit" class="btn btn-outline-success ml-2">Search</button>
+                        </form>
+                    </div>
+                </div>
+
+            <div class="mt-3 ml-auto">
+                <p>Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
+            </div>
+        </div>
+
+
         <div id="demo" class="carousel slide" data-ride="carousel"><!-- Carousel Goes Here -->
             <ul class="carousel-indicators">
                 <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -104,64 +172,7 @@
         </div><!-- Carousel Ends Here -->
 
 
-    <div class="form-row mt-4">
-        <div class="form-group col-md-6">
-            <form method="get" action="/main" class="form-inline">
-                <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search By Tag">
-                <button type="submit" class="btn btn-primary ml-2">Search</button>
-            </form>
-        </div>
-    </div>
-
-    <#if isAdmin>
     <div class="container-fluid mt-4"><!-- Collapse Goes Here Or The Form In Which Admin can Add Books -->
-
-
-        <p>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Add New Book
-            </a>
-        </p>
-        <div class="collapse mt-3 <#if message??>show</#if>" id="collapseExample">
-            <div class="form-group ml-3">
-                <form method="post" enctype="multipart/form-data">
-                    <div class="form-group ml">
-                        <input type="text" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"
-                               placeholder="Введите сообщение" value="<#if message??>${message.text}</#if>" />
-                        <#if textError??>
-                            <div class="invalid-feedback">
-                                ${textError}
-                            </div>
-                        </#if>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="tag" class="form-control" placeholder="Тэг" value="<#if message??>${message.tag}</#if>" />
-                        <#if tagError??>
-                            <div class="invalid-feedback">
-                                ${tagError}
-                            </div>
-                        </#if>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-file">
-                            <input type="file" name="file" id="customFile"/>
-                            <label class="custom-file-label" for="customFile">Choose File</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-file">
-                            <input type="file" name="fileImg" id="customFileImg"/>
-                            <label class="custom-file-label" for="customFileImg">Choose Image For Book</label>
-                        </div>
-                    </div>
-                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Добавить</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </#if>
 
     <div class="card-columns">
         <#list messages as message>
@@ -185,6 +196,42 @@
             No message
         </#list>
     </div> <!-- Display Existing Books in Card Ends Here -->
+
+        <div class="ml-auto">
+
+            <#if (currentPage > 1)>
+                <a href="/main/1" class="btn btn-light">First</a>
+            <#else>
+                <span class="btn btn-primary">First</span>
+            </#if>
+
+            <#if (currentPage > 1)>
+                <a href="/main/${currentPage - 1}" class="btn btn-light">Previous</a>
+            <#else>
+                <span class="btn btn-primary">Previous</span>
+            </#if>
+
+            <#list 1..totalPages  as totalPage>
+                <#if totalPage != currentPage>
+                    <a href="/main/${totalPage}" class="btn btn-light">${totalPage}</a>
+                <#else>
+                    <span class="btn btn-primary">${totalPage}</span>
+                </#if>
+            </#list>
+
+            <#if (currentPage < totalPages)>
+                <a href="/main/${currentPage + 1}" class="btn btn-light">Next</a>
+            <#else>
+                <span class="btn btn-primary">Next</span>
+            </#if>
+
+            <#if (currentPage < totalPages)>
+                <a href="/main/${totalPages}" class="btn btn-light">Last</a>
+            <#else>
+                <span class="btn btn-primary">Last</span>
+            </#if>
+
+        </div>
 
     </div>
 
