@@ -2,10 +2,12 @@ package com.Controllers;
 
 import com.Domain.EdsClasses;
 import com.Exception.StorageExceptionNotFound;
+import com.PDFExport.ClassesPdfExport;
 import com.Repos.ClassesRepo;
 import com.Repos.ClassesServiceRepo;
 import com.Services.ClassesService;
 import com.Services.FileSystemStorageService;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -22,9 +24,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
 import java.awt.print.Pageable;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -52,6 +58,24 @@ public class ClassesController {
 
 
         return listByPage(model, 1, "title", "asc");
+    }
+
+    @GetMapping("/classes/export")
+    public void exportToPDF(HttpServletResponse response) throws IOException, DocumentException {
+        response.setContentType("application/pdf");
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormat.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=classes_" + currentDateTime + ".pdf";
+
+        response.setHeader(headerKey, headerValue);
+
+        List<EdsClasses> list = (List<EdsClasses>) classesRepo.findAll();
+
+        ClassesPdfExport classesPdfExport = new ClassesPdfExport(list);
+        classesPdfExport.export(response);
+
     }
 
     @GetMapping("/page/{pageNumber}")

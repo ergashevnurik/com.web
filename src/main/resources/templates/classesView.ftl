@@ -173,9 +173,14 @@
             </form>
         </div>
 
+        <div class="mt-5 ml-3">
+            <a href="/classes/export" class="btn btn-success">Export to Pdf</a>
+        </div>
+
         <div class="mt-5 ml-auto">
             Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}
         </div>
+
     </div>
 
     <div class="container-fluid" style="background-color: #fff"> <!-- Ot dushi Oka Raxmat oka kattakon :) :)-->
