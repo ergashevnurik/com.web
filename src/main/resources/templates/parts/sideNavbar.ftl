@@ -331,7 +331,7 @@
                             <p>Math</p>
                         </a>
                         <div class="dropdown-container">
-                            <a href="/classes">
+                            <a href="/assignment">
                                 <p>Assignment</p>
                             </a>
                             <a href="/classes">
@@ -397,20 +397,8 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="fas fa-headphones"></i>
-                    <p>Audio Podcast</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
                     <i class="fas fa-comments"></i>
                     <p>Chat</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-user"></i>
-                    <p>Mnemonika</p>
                 </a>
             </li>
             <li>

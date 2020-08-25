@@ -109,62 +109,13 @@
 
         <#if isAdmin>
         <p>
-            <a class="btn btn-success mt-3 ml-3" style="border-radius: 50%;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-success mt-3 ml-3" style="border-radius: 50%;" href="/add-assignment">
                 <span class="font-size: 60px">
                     <i class="fa fa-plus"></i>
                 </span>
             </a>
         </p>
-        <div class="collapse mt-3" id="collapseExample">
-            <div class="form-group ml-3">
-                <form method="post" enctype="multipart/form-data" action="/add-classes">
-                    <div class="form-group ml">
-                        <input type="text" name="title" class="form-control"
-                               placeholder="Title" value="${title!''}" />
-                    </div>
-                    <div class="form-group ml">
-                        <input type="text" name="bookTitle" class="form-control"
-                               placeholder="Book Title" value="${bookTitle!''}" />
-                    </div>
-                    <div class="form-group ml">
-                        <input type="number" name="dueDate" class="form-control"
-                               placeholder="Due Date" value="${dueDate!''}" />
-                    </div>
-                    <div class="form-group">
-                        <input type="number" name="extendedDate" class="form-control"
-                               placeholder="Extended Date" value="${extendedDate!''}" />
-                    </div>
-                    <div class="form-group ml">
-                        <input type="text" name="submissionMethod" class="form-control"
-                               placeholder="Submission Method" value="${submissionMethod!''}" />
-                    </div>
-                    <div class="form-group ml">
-                        <input type="text" name="status" class="form-control"
-                               placeholder="Status" value="${status!''}" />
-                    </div>
-                    <div class="form-group ml">
-                        <input type="text" name="submissionFormat" class="form-control"
-                               placeholder="Submission Format" value="${submissionFormat!''}" />
-                    </div>
-                    <!--Material textarea-->
-                    <div class="form-group">
-                            <textarea class="form-control" name="description"
-                                      placeholder="Enter Description" value="${description!''}"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-file">
-                            <input type="file" name="file" id="customFile"/>
-                            <label class="custom-file-label" for="customFile">Choose File</label>
-                        </div>
-                    </div>
-                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Добавить</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </#if>
+        </#if>
 
         <div class="mt-3 ml-3">
             <form class="form-inline my-2 my-lg-0" method="get">
@@ -174,15 +125,15 @@
         </div>
 
         <div class="mt-3 ml-3">
-            <a href="/classes/export" class="btn btn-success">Export to Pdf</a>
+            <a href="/assignment/export" class="btn btn-success">Export to Pdf</a>
         </div>
 
         <div class="mt-3 ml-3">
-            <a href="/classes/csv" class="btn btn-success">Export to CSV</a>
+            <a href="/assignment/csv" class="btn btn-success">Export to CSV</a>
         </div>
 
         <div class="mt-3 ml-auto">
-            <p>Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
+            <p class="pt-2 pr-2">Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
         </div>
 
     </div>
@@ -226,7 +177,7 @@
 
                             <tr>
                                 <th>${message.id}</th>
-                                <th><a href="/classes/${message.id}">${message.title}</a></th>
+                                <th><a href="/assignment/${message.id}">${message.title}</a></th>
                                 <th><i>${message.dueDate}</i></th>
                                 <th><i>${message.extendedDate}</i></th>
                                 <th><i>${message.submissionMethod}</i></th>

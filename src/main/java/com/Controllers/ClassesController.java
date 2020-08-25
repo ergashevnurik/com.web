@@ -10,25 +10,18 @@ import com.Services.FileSystemStorageService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
-import java.awt.print.Pageable;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -36,7 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Controller
 public class ClassesController {
@@ -56,14 +48,14 @@ public class ClassesController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @GetMapping("/classes")
+    @GetMapping("/assignment")
     public String getInitialView(Model model) {
 
 
         return listByPage(model, 1, "title", "asc");
     }
 
-    @GetMapping("/classes/export")
+    @GetMapping("/assignment/export")
     public void exportToPDF(HttpServletResponse response) throws IOException, DocumentException {
         response.setContentType("application/pdf");
 
@@ -81,7 +73,7 @@ public class ClassesController {
 
     }
 
-    @GetMapping("/classes/csv")
+    @GetMapping("/assignment/csv")
     public void exportToCsv(HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
 
@@ -132,19 +124,24 @@ public class ClassesController {
         String reverseSortDirection = sortDirection.equals("asc") ? "desc" : "asc";
         model.addAttribute("reverseSortDirection", reverseSortDirection);
 
-        return "classesView";
+        return "assignmentView";
     }
 
-    @GetMapping("/classes/{classes}")
-    public String getInitialView(@PathVariable EdsClasses classes, Model model) {
+    @GetMapping("/assignment/{assignment}")
+    public String getInitialView(@PathVariable EdsClasses assignment, Model model) {
 
-        model.addAttribute("classes", classes);
+        model.addAttribute("assignment", assignment);
         model.addAttribute("infos", classesRepo.findAll());
 
-        return "classesTable";
+        return "assignmentTable";
     }
 
-    @PostMapping("/add-classes")
+    @RequestMapping(value = "/add-assignment", method = RequestMethod.GET)
+    public String getInitialView() {
+        return "assignmentForm";
+    }
+
+    @PostMapping("/add-assignment")
     public String add(@RequestParam String title, @RequestParam String bookTitle,
                       @RequestParam String description, @RequestParam Integer extendedDate,
                       @RequestParam Integer dueDate, @RequestParam String submissionMethod,
@@ -172,7 +169,7 @@ public class ClassesController {
 
         model.addAttribute("messages", messages);
 
-        return "classesView";
+        return "redirect:/assignment";
     }
 
     @ExceptionHandler(StorageExceptionNotFound.class)
