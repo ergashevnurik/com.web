@@ -16,6 +16,9 @@
         width: 100%;
         height: 500px;
     }
+    .container {
+        margin-top: 20px;
+    }
 </style>
 <body>
 <div class="wrapper">

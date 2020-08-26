@@ -5,54 +5,50 @@
 
     <div class="container-fluid">
         <table class="table table-striped mt-4">
-                    <#list infos as info>
                         <tr>
                             <th>ID</th>
-                            <th>${info.id}</th>
+                            <th>${id}</th>
                         </tr>
                         <tr>
                             <th scope="col">Title</th>
-                            <th scope="row"><i>${info.title}</i></th>
+                            <th scope="row"><i>${title}</i></th>
                         </tr>
                         <tr>
                             <th scope="col">Book Title</th>
-                            <th scope="row"><i>${info.bookTitle}</i></th>
+                            <th scope="row"><i>${bookTitle}</i></th>
                         </tr>
                         <tr>
                             <th scope="col">Due Date</th>
-                            <th scope="row"><i>${info.dueDate}</i></th>
+                            <th scope="row"><i>${dueDate}</i></th>
                         </tr>
                         <tr>
                             <th scope="col">Extended Date</th>
-                            <th scope="row"><i>${info.extendedDate}</i></th>
+                            <th scope="row"><i>${extendedDate}</i></th>
                         </tr>
                         <tr>
                             <th scope="col">Submission Method</th>
-                            <th scope="row"><i>${info.submissionMethod}</i></th>
+                            <th scope="row"><i>${submissionMethod}</i></th>
                         </tr>
                         <tr>
                             <th scope="col">Status</th>
-                            <th scope="row"><i>${info.status}</i></th>
+                            <th scope="row"><i>${status}</i></th>
                         </tr>
                         <tr>
                             <th scope="col">Submission Format</th>
-                            <th scope="row"><i>${info.submissionFormat}</i></th>
+                            <th scope="row"><i>${submissionFormat}</i></th>
                         </tr>
                         <tr>
                             <th scope="col">Description</th>
-                            <th scope="row"><i>${info.description}</i></th>
+                            <th scope="row"><i>${description}</i></th>
                         </tr>
                         <tr>
                             <th scope="col">Attached Files</th>
                             <th scope="row">
-                                <#if info.filename??>
-                                    <a href="/img/${info.filename}">${info.filename}</a>
+                                <#if filename??>
+                                    <a href="/img/${filename}">${filename}</a>
                                 </#if>
                             </th>
                         </tr>
-                            <#else>
-                            No Message
-                        </#list>
                 </table>
     </div>
 

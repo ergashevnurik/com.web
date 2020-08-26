@@ -334,11 +334,11 @@
                             <a href="/assignment">
                                 <p>Assignment</p>
                             </a>
-                            <a href="/classes">
-                                <p>Extra Classes</p>
+                            <a href="/lessonTable">
+                                <p>MyClasses</p>
                             </a>
                             <a href="/classes">
-                                <p>My Lesson</p>
+                                <p>Extra Lesson</p>
                             </a>
                         </div>
                     </#if>

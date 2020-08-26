@@ -131,7 +131,16 @@ public class ClassesController {
     public String getInitialView(@PathVariable EdsClasses assignment, Model model) {
 
         model.addAttribute("assignment", assignment);
-        model.addAttribute("infos", classesRepo.findAll());
+        model.addAttribute("id", assignment.getId());
+        model.addAttribute("title", assignment.getTitle());
+        model.addAttribute("bookTitle", assignment.getBookTitle());
+        model.addAttribute("dueDate", assignment.getDueDate());
+        model.addAttribute("extendedDate", assignment.getExtendedDate());
+        model.addAttribute("submissionMethod", assignment.getSubmissionFormat());
+        model.addAttribute("status", assignment.getStatus());
+        model.addAttribute("submissionFormat", assignment.getSubmissionFormat());
+        model.addAttribute("description", assignment.getDescription());
+        model.addAttribute("filename", assignment.getFilename());
 
         return "assignmentTable";
     }
