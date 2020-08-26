@@ -56,4 +56,8 @@
 
 
 
+    <div style="padding: 0;width: calc(100% - 260px);position: absolute;right: 0;">
+        <#include "parts/footer.ftl">
+    </div>
+
 </@c.page>

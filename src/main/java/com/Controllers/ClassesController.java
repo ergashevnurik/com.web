@@ -3,6 +3,7 @@ package com.Controllers;
 import com.Domain.EdsClasses;
 import com.Exception.StorageExceptionNotFound;
 import com.PDFExport.ClassesPdfExport;
+import com.PDFExport.ClassesTablePdfExport;
 import com.Repos.ClassesRepo;
 import com.Repos.ClassesServiceRepo;
 import com.Services.ClassesService;
@@ -73,6 +74,44 @@ public class ClassesController {
 
     }
 
+    @GetMapping("/assignment/exportPdfHw")
+    public void exportToPDFHw(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDate = dateFormat.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=homework_" + currentDate + ".pdf";
+
+        response.setHeader(headerKey, headerValue);
+
+        List<EdsClasses> list = (List<EdsClasses>) classesRepo.findAll();
+        ClassesTablePdfExport classesTablePdfExport = new ClassesTablePdfExport(list);
+        classesTablePdfExport.export(response);
+    }
+
+    @GetMapping("/assignment/exportCsvHw")
+    public void exportToCsvHw(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDate = dateFormat.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=homework_" + currentDate + ".csv";
+
+        response.setHeader(headerKey, headerValue);
+
+        List<EdsClasses> classes = (List<EdsClasses>) classesRepo.findAll();
+        ICsvBeanWriter csvBeanWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+
+        String[] csvHeader = {"ID", "Title", "Book Title", "Due Date", "Extended Date", "Status", "Submission Method", "Submission Format", "Description"};
+        String[] nameMapping = {"id", "title", "bookTitle", "dueDate", "extendedDate", "status", "submissionMethod", "submissionFormat", "description"};
+        csvBeanWriter.writeHeader(csvHeader);
+
+        for (EdsClasses edsClasses : classes) {
+            csvBeanWriter.write(edsClasses, nameMapping);
+            csvBeanWriter.close();
+        }
+    }
+
     @GetMapping("/assignment/csv")
     public void exportToCsv(HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
@@ -80,10 +119,10 @@ public class ClassesController {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mmm:ss");
         String currentDateTime = dateFormat.format(new Date());
         String fileName = "classes" + currentDateTime + ".csv";
-        String headerkey = "Content-Desposition";
+        String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=" + fileName;
 
-        response.setHeader(headerkey, headerValue);
+        response.setHeader(headerKey, headerValue);
 
         List<EdsClasses> list = (List<EdsClasses>) classesRepo.findAll();
 
