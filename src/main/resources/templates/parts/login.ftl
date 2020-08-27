@@ -1,7 +1,7 @@
 <#macro login path isRegisterForm>
 <form action="${path}" method="post">
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"> User Name : </label>
+    <div class="form-group">
+        <label class="col-sm-6 col-form-label"> User Name : </label>
         <div class="col-sm-6">
             <input type="text" class="form-control ${(usernameError??)?string('is-invalid', '')}" name="username"
                    placeholder="User Name" value="<#if user??>${user.username}</#if>"/>
@@ -12,8 +12,8 @@
             </#if>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"> Password: </label>
+    <div class="form-group">
+        <label class="col-sm-6 col-form-label"> Password: </label>
         <div class="col-sm-6">
             <input type="password" class="form-control ${(passwordError??)?string('is-invalid', '')}" name="password" placeholder="Password"/>
             <#if passwordError??>
@@ -24,7 +24,7 @@
         </div>
     </div>
     <#if isRegisterForm>
-        <div class="form-group row">
+        <div class="form-group">
             <label class="col-sm-2 col-form-label"> Password: </label>
             <div class="col-sm-6">
                 <input type="password" class="form-control ${(password2Error??)?string('is-invalid', '')}" name="password2" placeholder="Retype Password"/>
@@ -35,7 +35,7 @@
                 </#if>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
             <label class="col-sm-2 col-form-label"> Email: </label>
             <div class="col-sm-6">
                 <input type="email" class="form-control ${(emailError??)?string('is-invalid', '')}" name="email"
@@ -48,9 +48,11 @@
             </div>
         </div>
     </#if>
-    <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
-    <button type="submit" class="btn btn-primary"><#if isRegisterForm>Create<#else>Sign In</#if></button>
+    <div class="form-group">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <#if !isRegisterForm><a href="/registration" class="row">Add new user</a></#if>
+        <button type="submit" class="btn btn-primary col-6"><#if isRegisterForm>Create<#else>Sign In</#if></button>
+    </div>
 </form>
 </#macro>
 
