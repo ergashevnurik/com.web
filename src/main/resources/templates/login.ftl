@@ -35,13 +35,13 @@
         @media screen and (min-width: 600px) {
             .container {
                 display: flex;
-                left:60%;
+                left:50%;
             }
             .input_box {
                 width: 700px;
             }
             .img_box {
-                width: 500px;
+                width: 700px;
             }
             .img_box svg {
                 width: 100%;
