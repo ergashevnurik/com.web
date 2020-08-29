@@ -21,7 +21,7 @@ public class DashboardController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
+    @RequestMapping(value = "/line-chart", method = RequestMethod.GET)
     public String getDataFromDb() {
         List<Data> dataList = dataDao.findAll();
         JsonArray jsonMonth = new JsonArray();
