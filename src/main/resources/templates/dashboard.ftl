@@ -2,7 +2,6 @@
 <head>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/98a25c3e70.js" crossorigin="anonymous"></script>
     <link rel="stylesheet"
           href="https://code.highcharts.com/css/highcharts.css" />
     <script
@@ -14,14 +13,87 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
+<style>
+    .chart {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    }
+</style>
 <body>
 <div class="wrapper">
     <#include "parts/sideNavbar.ftl"/>
     <div class="container-fluid"  style="padding: 0;width: calc(100% - 260px);position: absolute;right: 0;">
         <#include "parts/navbar.ftl"/>
         <div class="container-fluid" style="padding: 0!important;">
-            <div id="container"></div>
 
+            <div class="container mt-4">
+                <div id="container" class="chart">
+
+                </div>
+                <div id="pie-chart" class="mt-3">
+
+                </div>
+            </div>
+
+            <script>
+                $(document).ready(
+                    function() {
+                        $.ajax({
+                            url: '/pie-chart',
+                            success: function (result) {
+                                var series = [];
+                                var data = [];
+
+                                for(var i = 0; i < result.length; i++){
+                                    var object = {};
+                                    object.name = result[i].name.toUpperCase();
+                                    object.y = result[i].yaxis;
+                                    data.push(object);
+                                }
+                                var seriesObject = {
+                                    name: 'Employees',
+                                    colorByPoint: true,
+                                    data: data
+                                };
+                                series.push(seriesObject);
+                                console.log(result);
+                                drawPieChart(series);
+                            }
+                        });
+                    });
+
+                function drawPieChart(series) {
+                    Highcharts.chart('pie-chart', {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie',
+                            width: 500,
+                        },
+                        title: {
+                            text: 'Browser market shares in January, 2018'
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                return '<strong>'+this.key+': </strong>'+ this.y;
+                            }
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.y}'
+                                }
+                            }
+                        },
+                        series: series
+                    });
+
+                }
+
+            </script>
 
             <script>
                 $(document).ready(
@@ -41,7 +113,6 @@
 
                         chart: {
                             type: 'line',
-                            width: 500
                         },
 
                         title: {
