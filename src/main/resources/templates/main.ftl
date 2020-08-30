@@ -190,64 +190,141 @@
             top: 12px;
         }
 
+
+        /* Side Bar */
+        .inner_container {
+            position: relative;
+        }
+        header {
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transition: 0.6s;
+            z-index: 10000;
+        }
+        header #toggle {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: green;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        header #toggle:before {
+            content: '';
+            position: absolute;
+            top: 13px;
+            width: 53%;
+            left: 7px;
+            height: 2px;
+            background: #fff;
+        }
+        header #toggle:after {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: 15px;
+            width: 53%;
+            height: 2px;
+            background: #fff;
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+        .banner.active header #toggle {
+            right: 0!important;
+            top: 0!important;
+            filter: brightness(100%)!important;
+            z-index: 100;
+            width: 80px;
+            height: 80px;
+            border-bottom-right-radius: 15px;
+            border-top-right-radius: 15px;
+            background: #fff;
+        }
+        .banner.active header #toggle:before {
+            top: 50%;
+            left: 50%;
+            width: 53%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            background: #000;
+        }
+        .banner.active header #toggle:after {
+            top: 50%;
+            width: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            background: #000;
+        }
+
+        .banner {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: #fff;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            transition: 0.5s;
+            z-index: 2;
+        }
+        .banner.active {
+            transform: translateX(-400px);
+            filter: brightness(80%);
+        }
+        #navigation {
+            position: fixed;
+            top: 0;
+            right: -200px;
+            width: 400px;
+            height: 100vh;
+            background: #fff;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+            transition: 0.5s;
+        }
+        #navigation.active {
+            right: 0;
+        }
+        #navigation.active ul {
+            list-style: none;
+        }
+        #navigation.active ul li {
+            text-align: center;
+        }
+        #navigation.active ul li a {
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
     </style>
 
-    <div class="container-fluid mt-3">
 
-        <div class="container" style="display: flex;">
+    <section class="banner" id="sec">
 
-            <div>
-                <#if isAdmin>
-                    <p>
-                        <a class="btn btn-success" data-toggle="collapse" style="border-radius: 50%" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <span class="font-size: 60px">
-                                <i class="fa fa-plus"></i>
-                            </span>
-                        </a>
-                    </p>
-                    <div class="collapse mt-3 <#if message??>show</#if>" id="collapseExample">
-                        <div class="form-group ml-3">
-                            <form method="post" enctype="multipart/form-data" action="/add-book">
-                                <div class="form-group ml">
-                                    <input type="text" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"
-                                           placeholder="Введите сообщение" value="<#if message??>${message.text}</#if>" />
-                                    <#if textError??>
-                                        <div class="invalid-feedback">
-                                            ${textError}
-                                        </div>
-                                    </#if>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="tag" class="form-control" placeholder="Тэг" value="<#if message??>${message.tag}</#if>" />
-                                    <#if tagError??>
-                                        <div class="invalid-feedback">
-                                            ${tagError}
-                                        </div>
-                                    </#if>
-                                </div>
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" name="file" id="customFile"/>
-                                        <label class="custom-file-label" for="customFile">Choose File</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" name="fileImg" id="customFileImg"/>
-                                        <label class="custom-file-label" for="customFileImg">Choose Image For Book</label>
-                                    </div>
-                                </div>
-                                <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Добавить</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </#if>
-            </div>
+        <div class="container-fluid mt-3">
 
-                <div class="ml-3">
+            <div class="container" style="display: flex;position: relative" >
+
+                <div class="plus_container">
+
+                    <#if isAdmin>
+                        <header>
+                            <div id="toggle" onclick="toggle()">
+
+                            </div>
+                        </header>
+                    </#if>
+
+                </div>
+
+                <div class="ml-5">
                     <div class="form-group">
                         <form method="get" action="/main/${currentPage}" class="form-inline">
                             <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search By Tag">
@@ -256,124 +333,176 @@
                     </div>
                 </div>
 
-            <div class="mt-3 ml-auto">
-                <p>Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
-            </div>
-        </div>
-
-
-        <div id="demo" class="carousel slide" data-ride="carousel"><!-- Carousel Goes Here -->
-            <ul class="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
-            <div class="carousel-inner" style="border-radius: 25px;">
-                <div class="carousel-item active">
-                    <#--<img src="la.jpg" alt="Los Angeles" width="1100" height="500">-->
-                    <div class="carousel-caption">
-                        <h3>Los Angeles</h3>
-                        <p>We had such a great time in LA!</p>
-                        <a href="#">Let's Go</a>
-                        <a href="#">Go On...</a>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <#--<img src="chicago.jpg" alt="Chicago" width="1100" height="500">-->
-                    <div class="carousel-caption">
-                        <h3>Chicago</h3>
-                        <p>Thank you, Chicago!</p>
-                        <a href="#">Let's Go</a>
-                        <a href="#">Go On...</a>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <#-- <img src="ny.jpg" alt="New York" width="1100" height="500">-->
-                    <div class="carousel-caption">
-                        <h3>New York</h3>
-                        <p>We love the Big Apple!</p>
-                        <a href="#">Let's Go</a>
-                        <a href="#">Go On...</a>
-                    </div>
+                <div class="mt-3 ml-auto">
+                    <p>Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
-        </div><!-- Carousel Ends Here -->
 
 
-    <div class="container-fluid mt-4"><!-- Collapse Goes Here Or The Form In Which Admin can Add Books -->
-
-    <div class="card-columns">
-    <div class="content">
-        <div class="content_card">
-            <#list messages as message>
-                <div class="card" href="#!" style="width: 18rem;">
-                    <div class="front" style="background-size: contain; background-repeat: no-repeat;">
-                        <#if message.filename??>
-                            <img src="/img/${message.filenameImg}" class="card-img-top">
-                        </#if>
+            <div id="demo" class="carousel slide" data-ride="carousel"><!-- Carousel Goes Here -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+                <div class="carousel-inner" style="border-radius: 25px;">
+                    <div class="carousel-item active">
+                        <#--<img src="la.jpg" alt="Los Angeles" width="1100" height="500">-->
+                        <div class="carousel-caption">
+                            <h3>Los Angeles</h3>
+                            <p>We had such a great time in LA!</p>
+                            <a href="#">Let's Go</a>
+                            <a href="#">Go On...</a>
+                        </div>
                     </div>
-                    <div class="back">
-                        <div>
-                            <span>${message.text}</span>
-                            <i>${message.tag}</i>
-                            <i>${message.authorName}</i>
-                            <#if message.filename??>
-                                <a href="/img/${message.filename}" class="btn btn-primary button">Download</a>
-                            </#if>
+                    <div class="carousel-item">
+                        <#--<img src="chicago.jpg" alt="Chicago" width="1100" height="500">-->
+                        <div class="carousel-caption">
+                            <h3>Chicago</h3>
+                            <p>Thank you, Chicago!</p>
+                            <a href="#">Let's Go</a>
+                            <a href="#">Go On...</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <#-- <img src="ny.jpg" alt="New York" width="1100" height="500">-->
+                        <div class="carousel-caption">
+                            <h3>New York</h3>
+                            <p>We love the Big Apple!</p>
+                            <a href="#">Let's Go</a>
+                            <a href="#">Go On...</a>
                         </div>
                     </div>
                 </div>
-        <#else>
-            No message
-        </#list>
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div><!-- Carousel Ends Here -->
+
+
+            <div class="container-fluid mt-4"><!-- Collapse Goes Here Or The Form In Which Admin can Add Books -->
+
+                <div class="card-columns">
+                    <div class="content">
+                        <div class="content_card">
+                            <#list messages as message>
+                                <div class="card" href="#!" style="width: 18rem;">
+                                    <div class="front" style="background-size: contain; background-repeat: no-repeat;">
+                                        <#if message.filename??>
+                                            <img src="/img/${message.filenameImg}" class="card-img-top">
+                                        </#if>
+                                    </div>
+                                    <div class="back">
+                                        <div>
+                                            <span>${message.text}</span>
+                                            <i>${message.tag}</i>
+                                            <i>${message.authorName}</i>
+                                            <#if message.filename??>
+                                                <a href="/img/${message.filename}" class="btn btn-primary button">Download</a>
+                                            </#if>
+                                        </div>
+                                    </div>
+                                </div>
+                            <#else>
+                                No message
+                            </#list>
+                        </div>
+                    </div>
+                </div> <!-- Display Existing Books in Card Ends Here -->
+                <div class="ml-auto">
+
+                    <#if (currentPage > 1)>
+                        <a href="/main/1" class="btn btn-light">First</a>
+                    <#else>
+                        <span class="btn btn-primary">First</span>
+                    </#if>
+
+                    <#if (currentPage > 1)>
+                        <a href="/main/${currentPage - 1}" class="btn btn-light">Previous</a>
+                    <#else>
+                        <span class="btn btn-primary">Previous</span>
+                    </#if>
+
+                    <#list 1..totalPages  as totalPage>
+                        <#if totalPage != currentPage>
+                            <a href="/main/${totalPage}" class="btn btn-light">${totalPage}</a>
+                        <#else>
+                            <span class="btn btn-primary">${totalPage}</span>
+                        </#if>
+                    </#list>
+
+                    <#if (currentPage < totalPages)>
+                        <a href="/main/${currentPage + 1}" class="btn btn-light">Next</a>
+                    <#else>
+                        <span class="btn btn-primary">Next</span>
+                    </#if>
+
+                    <#if (currentPage < totalPages)>
+                        <a href="/main/${totalPages}" class="btn btn-light">Last</a>
+                    <#else>
+                        <span class="btn btn-primary">Last</span>
+                    </#if>
+
+                </div>
+
+            </div>
         </div>
-    </div>
-    </div> <!-- Display Existing Books in Card Ends Here -->
-        <div class="ml-auto">
+    </section>
 
-            <#if (currentPage > 1)>
-                <a href="/main/1" class="btn btn-light">First</a>
-            <#else>
-                <span class="btn btn-primary">First</span>
-            </#if>
+    <div id="navigation">
 
-            <#if (currentPage > 1)>
-                <a href="/main/${currentPage - 1}" class="btn btn-light">Previous</a>
-            <#else>
-                <span class="btn btn-primary">Previous</span>
-            </#if>
-
-            <#list 1..totalPages  as totalPage>
-                <#if totalPage != currentPage>
-                    <a href="/main/${totalPage}" class="btn btn-light">${totalPage}</a>
-                <#else>
-                    <span class="btn btn-primary">${totalPage}</span>
-                </#if>
-            </#list>
-
-            <#if (currentPage < totalPages)>
-                <a href="/main/${currentPage + 1}" class="btn btn-light">Next</a>
-            <#else>
-                <span class="btn btn-primary">Next</span>
-            </#if>
-
-            <#if (currentPage < totalPages)>
-                <a href="/main/${totalPages}" class="btn btn-light">Last</a>
-            <#else>
-                <span class="btn btn-primary">Last</span>
-            </#if>
-
+        <div class="<#if message??>show</#if>">
+            <div class="form-group ml-3">
+                <form method="post" enctype="multipart/form-data" action="/add-book">
+                    <div class="form-group ml">
+                        <input type="text" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"
+                               placeholder="Введите сообщение" value="<#if message??>${message.text}</#if>" />
+                        <#if textError??>
+                            <div class="invalid-feedback">
+                                ${textError}
+                            </div>
+                        </#if>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="tag" class="form-control" placeholder="Тэг" value="<#if message??>${message.tag}</#if>" />
+                        <#if tagError??>
+                            <div class="invalid-feedback">
+                                ${tagError}
+                            </div>
+                        </#if>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" name="file" id="customFile"/>
+                            <label class="custom-file-label" for="customFile">Choose File</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" name="fileImg" id="customFileImg"/>
+                            <label class="custom-file-label" for="customFileImg">Choose Image For Book</label>
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
     </div>
 
+    <script type="text/javascript">
+        function toggle() {
+            var sec = document.getElementById('sec');
+            var nav = document.getElementById('navigation');
+            sec.classList.toggle('active');
+            nav.classList.toggle('active');
 
-
-
+        }
+    </script>
 </@c.page>
