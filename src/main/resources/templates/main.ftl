@@ -56,6 +56,140 @@
             background: #fff;
         }
         /* Carousel Caption Ends Here */
+
+
+        .card {
+            color: inherit;
+            cursor: pointer;
+            width: calc(33% - 2rem);
+            min-width: calc(33% - 2rem);
+            height: 400px;
+            min-height: 400px;
+            perspective: 1000px;
+            margin: 1rem;
+            position: relative;
+
+            /*background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%); if necessary ne ochet crasivo no vozmojno prigoditsa*/
+        }
+        @media screen and (max-width: 800px) {
+            .card {
+                width: calc(50% - 2rem);
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .card {
+                width: 100%;
+            }
+        }
+
+        .front, .back {
+            display: flex;
+            border-radius: 6px;
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            transition: ease-in-out 600ms;
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 300;
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        .front {
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .card:hover .front {
+            transform: rotateY(180deg);
+        }
+        .card:nth-child(even):hover .front {
+            transform: rotateY(-180deg);
+        }
+
+        .back {
+            background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+            color: #5d8ee2;
+            transform: rotateY(-180deg);
+            padding: 0 2em;
+        }
+        .back .button {
+            background: linear-gradient(135deg, #1a9be6, #1a57e6);
+        }
+        .back .button:before {
+            box-shadow: 0 0 10px 10px rgba(26, 87, 230, 0.25);
+            background-color: rgba(26, 87, 230, 0.25);
+        }
+        .card:hover .back {
+            transform: rotateY(0deg);
+        }
+        .card:nth-child(even) .back {
+            transform: rotateY(180deg);
+            color: #e25069;
+        }
+        .card:nth-child(even) .back .button {
+            background: linear-gradient(135deg, #e61a80, #e61a3c);
+        }
+        .card:nth-child(even) .back .button:before {
+            box-shadow: 0 0 10px 10px rgba(230, 26, 60, 0.25);
+            background-color: rgba(230, 26, 60, 0.25);
+        }
+        .card:nth-child(even):hover .back {
+            transform: rotateY(0deg);
+        }
+
+        .button {
+            transform: translateZ(40px);
+            cursor: pointer;
+            backface-visibility: hidden;
+            font-weight: bold;
+            color: #fff;
+            padding: .5em 1em;
+            border-radius: 100px;
+            font: inherit;
+            border: none;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: 300ms ease;
+        }
+        .button:before {
+            transition: 300ms ease;
+            position: absolute;
+            display: block;
+            content: '';
+            transform: translateZ(-40px);
+            backface-visibility: hidden;
+            height: calc(100% - 20px);
+            width: calc(100% - 20px);
+            border-radius: 100px;
+            left: 10px;
+            top: 16px;
+        }
+        .button:hover {
+            transform: translateZ(75px);
+        }
+        .button:hover:before {
+            transform: translateZ(-75px);
+        }
+        .button:active {
+            transform: translateZ(30px);
+            outline: none;
+        }
+        .button:focus {
+            outline: none;
+        }
+        .button:active:before {
+            transform: translateZ(-30px);
+            top: 12px;
+        }
+
     </style>
 
     <div class="container-fluid mt-3">
@@ -175,28 +309,32 @@
     <div class="container-fluid mt-4"><!-- Collapse Goes Here Or The Form In Which Admin can Add Books -->
 
     <div class="card-columns">
-        <#list messages as message>
-            <div class="card my-3" style="width: 18rem;">
-                <#if message.filename??>
-                    <img src="/img/${message.filenameImg}" class="card-img-top">
-                </#if>
-                <div class="m-2">
-                    <span>${message.text}</span>
-                    <i>${message.tag}</i>
+    <div class="content">
+        <div class="content_card">
+            <#list messages as message>
+                <div class="card" href="#!" style="width: 18rem;">
+                    <div class="front" style="background-size: contain; background-repeat: no-repeat;">
+                        <#if message.filename??>
+                            <img src="/img/${message.filenameImg}" class="card-img-top">
+                        </#if>
+                    </div>
+                    <div class="back">
+                        <div>
+                            <span>${message.text}</span>
+                            <i>${message.tag}</i>
+                            <i>${message.authorName}</i>
+                            <#if message.filename??>
+                                <a href="/img/${message.filename}" class="btn btn-primary button">Download</a>
+                            </#if>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer text-muted">
-                    <i>${message.authorName}</i>
-                    <#if message.filename??>
-                        <a href="/img/${message.filename}" class="btn btn-primary">Download</a>
-                    </#if>
-                </div>
-
-            </div>
         <#else>
             No message
         </#list>
+        </div>
+    </div>
     </div> <!-- Display Existing Books in Card Ends Here -->
-
         <div class="ml-auto">
 
             <#if (currentPage > 1)>
