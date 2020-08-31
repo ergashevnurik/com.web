@@ -204,7 +204,7 @@
         border: none;
         border-radius: 10px;
         box-shadow: inset 3px 2px 6px rgba(80, 80, 80, 0.3);
-        background-color: #F2F0F0;
+        background-color: #fff;
     }
 
     /* Handle on hover */
