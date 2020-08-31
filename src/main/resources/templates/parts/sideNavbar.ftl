@@ -77,9 +77,7 @@
 
     .sidebar .nav li.active>a ,.sidebar .nav li>a:hover, .dropdown-container a:hover,
     .dropdown-container a:focus, .sidebar .nav li>a:focus {
-        border-left: 6px solid #FFAC00;
-        background-color: #b8b5b585;
-        box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+        border-right: 6px solid #fff;
     }
 
     .sidebar .nav li.active a,
