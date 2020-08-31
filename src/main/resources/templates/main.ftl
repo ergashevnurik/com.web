@@ -229,7 +229,7 @@
         }
         .banner.active header #toggle {
             right: -10px!important;
-            top: 0!important;
+            top: -45px!important;
             filter: brightness(100%)!important;
             z-index: 100;
             width: 80px;
