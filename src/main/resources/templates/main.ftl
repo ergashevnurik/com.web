@@ -3,59 +3,53 @@
 
 <@c.page>
     <style>
-        .carousel {
+        .carousel { /* Carousel In the Library Section */
             position: relative;
+            width: 600px!important;
+            background: #fff;
+            height: 400px;
         }
-
-        .carousel-item, .carousel-item .active { /* Carousel Item Goes Here */
-            border-radius: 25px;
-            background: #191919;
+        .carousel-item {
+            width: 600px!important;
+        }
+        .carousel-item .row .col-md-6 {
+            width: 600px!important;
+            height: 400px;
+        }
+        .carousel-item .row .col-md-6 img {
             width: 100%;
-            height: 500px;
-        }/* Carousel Item Ends Here */
-
-        .carousel-control-prev, .carousel-control-next { /* Carousel Next Prev Goes Here */
+            height: 100%;
+        }
+        .carousel-control-prev, .carousel-control-next {
             position: absolute;
             width: 50px;
             height: 50px;
             top: unset;
-            left: unset;
+            z-index: 200;
         }
         .carousel-control-prev {
-            bottom: 15px !important;
-            right: 100px !important;
+            left: unset;
+            right: 50px;
+            top: unset;
         }
-        .carousel-control-next {
-            bottom: 15px !important;
-            right: 50px !important;
-        } /* Carousel Next Prev Ends Here */
-        .carousel-indicators { /* Carousel Indicators Goes Here */
-            right: unset;
+        .carousel-caption h5 {
+            color: #000;
+        }
+        .carousel-caption {
+            color: #000;
+            left: unset!important;
+            bottom: unset!important;
+            text-align: left;
+        }
+        .carousel-indicators {
+            margin-right: unset!important;
+        }
+        .carousel-control-next-icon, .carousel-control-prev-icon {
+            filter: brightness(50%);
         }
         .carousel-indicators li {
-            border-radius: 50%;
-            height: 3px;
-            width: 3px;
-        }
-        .carousel-indicators li.active {
-            border-radius: unset;
-            height: 3px;
-            width: 30px;
-        }/* Carousel Indicators Ends Here */
-        .carousel-caption { /* Carousel Caption Goes Here */
-            position: absolute;
-            top: 240px;
-            left: 50px;
-            right: unset;
-            bottom: unset;
-        }
-        .carousel-caption a {
-            padding: 12px 20px;
-            text-decoration: none;
-            color: #000;
-            background: #fff;
-        }
-        /* Carousel Caption Ends Here */
+            filter: brightness(50%);
+        } /* Carousel In the Library Section */
 
 
         .card {
@@ -234,7 +228,7 @@
             transform: translate(-50%, -50%) rotate(90deg);
         }
         .banner.active header #toggle {
-            right: 0!important;
+            right: -10px!important;
             top: 0!important;
             filter: brightness(100%)!important;
             z-index: 100;
@@ -272,7 +266,10 @@
         }
         .banner.active {
             transform: translateX(-400px);
-            filter: brightness(80%);
+            background: rgba(0,0,0,0.5);
+        }
+        .banner.active .front img, .banner.active .card {
+            filter: brightness(50%);
         }
         #navigation {
             position: fixed;
@@ -337,51 +334,6 @@
                     <p>Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
                 </div>
             </div>
-
-
-            <div id="demo" class="carousel slide" data-ride="carousel"><!-- Carousel Goes Here -->
-                <ul class="carousel-indicators">
-                    <li data-target="#demo" data-slide-to="0" class="active"></li>
-                    <li data-target="#demo" data-slide-to="1"></li>
-                    <li data-target="#demo" data-slide-to="2"></li>
-                </ul>
-                <div class="carousel-inner" style="border-radius: 25px;">
-                    <div class="carousel-item active">
-                        <#--<img src="la.jpg" alt="Los Angeles" width="1100" height="500">-->
-                        <div class="carousel-caption">
-                            <h3>Los Angeles</h3>
-                            <p>We had such a great time in LA!</p>
-                            <a href="#">Let's Go</a>
-                            <a href="#">Go On...</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <#--<img src="chicago.jpg" alt="Chicago" width="1100" height="500">-->
-                        <div class="carousel-caption">
-                            <h3>Chicago</h3>
-                            <p>Thank you, Chicago!</p>
-                            <a href="#">Let's Go</a>
-                            <a href="#">Go On...</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <#-- <img src="ny.jpg" alt="New York" width="1100" height="500">-->
-                        <div class="carousel-caption">
-                            <h3>New York</h3>
-                            <p>We love the Big Apple!</p>
-                            <a href="#">Let's Go</a>
-                            <a href="#">Go On...</a>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
-            </div><!-- Carousel Ends Here -->
-
 
             <div class="container-fluid mt-4"><!-- Collapse Goes Here Or The Form In Which Admin can Add Books -->
 
