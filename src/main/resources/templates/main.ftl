@@ -185,92 +185,8 @@
         }
 
 
-        /* Side Bar */
-        .inner_container {
-            position: relative;
-        }
-        header {
-            position: absolute;
-            top: 5px;
-            left: 15px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transition: 0.6s;
-            z-index: 10000;
-        }
-        header #toggle {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            background: green;
-            padding: 5px;
-            border-radius: 50%;
-        }
-        header #toggle:before {
-            content: '';
-            position: absolute;
-            top: 13px;
-            width: 53%;
-            left: 7px;
-            height: 2px;
-            background: #fff;
-        }
-        header #toggle:after {
-            content: '';
-            position: absolute;
-            top: 14px;
-            left: 15px;
-            width: 53%;
-            height: 2px;
-            background: #fff;
-            transform: translate(-50%, -50%) rotate(90deg);
-        }
-        .banner.active header #toggle {
-            right: -10px!important;
-            top: -45px!important;
-            filter: brightness(100%)!important;
-            z-index: 100;
-            width: 80px;
-            height: 80px;
-            border-bottom-right-radius: 15px;
-            border-top-right-radius: 15px;
-            background: #fff;
-        }
-        .banner.active header #toggle:before {
-            top: 50%;
-            left: 50%;
-            width: 53%;
-            transform: translate(-50%, -50%) rotate(45deg);
-            background: #000;
-        }
-        .banner.active header #toggle:after {
-            top: 50%;
-            width: 53%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            background: #000;
-        }
 
-        .banner {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            background: #fff;
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            transition: 0.5s;
-            z-index: 2;
-        }
-        .banner.active {
-            transform: translateX(-400px);
-            background: rgba(0,0,0,0.5);
-        }
-        .banner.active .front img, .banner.active .card {
-            filter: brightness(50%);
-        }
+
         #navigation {
             position: fixed;
             top: 0;
@@ -300,28 +216,84 @@
             font-weight: 600;
         }
 
+        .banner {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: #fff;
+            background-size: cover;
+            align-items: center;
+            transition: 0.5s;
+            z-index: 200;
+        }
+        .banner.active {
+            transform: translateX(-400px);
+            background: rgba(0,0,0,0.1);
+        }
+        .banner.active .front img, .banner.active .card {
+            filter: brightness(50%);
+        }
+        .banner.active #toggle {
+            right: -10px!important;
+            position: absolute;
+            top: 0!important;
+            cursor: pointer;
+            filter: brightness(100%)!important;
+            z-index: 100;
+            width: 80px;
+            height: 80px;
+            border-bottom-left-radius: 50px;
+            border-top-left-radius: 50px;
+            background: #fff;
+        }
+        .banner.active #toggle span {
+            visibility: hidden;
+        }
+        .banner.active #toggle:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 3px;
+            width: 53%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            background: #000;
+        }
+        .banner.active #toggle:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 53%;
+            height: 3px;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            background: #000;
+        }
+        .banner.active .table_container, .banner.active .btn {
+            background: rgba(0,0,0,0.05);
+            border: none;
+            outline: none;
+            color: #000;
+        }
+
     </style>
 
 
     <section class="banner" id="sec">
 
-        <div class="container-fluid mt-3">
-
-            <div class="container" style="display: flex;position: relative" >
-
-                <div class="plus_container">
+        <div class="container" style="display: flex;margin-top: 0!important;">
 
                     <#if isAdmin>
-                        <header>
-                            <div id="toggle" onclick="toggle()">
-
-                            </div>
-                        </header>
+                        <div id="toggle" onclick="toggle()">
+                            <span class="btn btn-success mt-3 ml-3" style="border-radius: 50%;">
+                                <span class="font-size: 60px">
+                                    <i class="fa fa-plus"></i>
+                                </span>
+                            </span>
+                        </div>
                     </#if>
 
-                </div>
-
-                <div class="ml-5">
+                <div class="mt-3 ml-3">
                     <div class="form-group">
                         <form method="get" action="/main/${currentPage}" class="form-inline">
                             <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search By Tag">
@@ -330,7 +302,7 @@
                     </div>
                 </div>
 
-                <div class="mt-3 ml-auto">
+                <div class="mt-4 ml-auto">
                     <p>Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
                 </div>
             </div>
