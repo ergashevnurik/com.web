@@ -1,10 +1,13 @@
 package com.Controllers;
 
 import com.Domain.Data;
+import com.Domain.Message;
 import com.Domain.PieChartData;
 import com.Domain.User;
 import com.Repos.DataDao;
+import com.Repos.MessageRepo;
 import com.Repos.PieChartRepo;
+import com.Services.MessageService;
 import com.Services.UserService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -29,12 +32,21 @@ public class DashboardController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MessageService messageService;
+
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String getDashboard(Model model) {
         Page<User> data = userService.findAll();
         long allUsers = data.getTotalElements();
         List<User> userList = data.getContent();
+
+        Page<Message> messageData = messageService.listAll(1);
+        long allBooks = messageData.getTotalElements();
+        List<Message> bookList = messageData.getContent();
+
         model.addAttribute("allUsers", allUsers);
+        model.addAttribute("allBooks", allBooks);
         return "dashboard";
     }
 
