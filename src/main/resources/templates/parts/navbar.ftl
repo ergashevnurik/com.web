@@ -1,7 +1,7 @@
 <#include "security.ftl">
 <#import "login.ftl" as l>
 
-<nav class="navbar navbar-expand-lg" style="width: 100%;background: #1B3E59;z-index: 1050;"><!-- Navbar Goes Here -->
+<nav class="navbar navbar-expand-lg" style="width: 100%;background: #fff;z-index: 1050;"><!-- Navbar Goes Here -->
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 					    <span class="navbar-toggler-icon">
@@ -9,22 +9,22 @@
               </span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div class="navbar-text mr-auto mt-2 mt-lg-0" style="color: white">${name}</div>
+        <div class="navbar-text mr-auto mt-2 mt-lg-0" style="color: #000">${name}</div>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0" method="get">
                     <input class="form-control mr-sm-2" type="text" value="${filter?ifExists}" placeholder="Search" aria-label="Search" name="filter">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
                 </form>
 
 
             </li>
             <li class="nav-item">
-                <a href="#" class="ml-3 btn" style="font-size: 18px; color:#fff"><i class="fa fa-heart"></i></a>
+                <a href="#" class="ml-3 btn" style="font-size: 18px; color:#000"><i class="fa fa-heart"></i></a>
             </li>
             <li class="nav-item">
                 <div class="dropdown ml-3">
-                    <a class="btn dropdown-toggle" href="#" role="button" style="font-size: 18px; color:#fff;border: none" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn dropdown-toggle" href="#" role="button" style="font-size: 18px; color:#000;border: none" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </a>
 
@@ -41,7 +41,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a href="#" class="ml-3 btn" style="font-size: 18px; color:#fff"><i class="fa fa-home"></i></a>
+                <a href="#" class="ml-3 btn" style="font-size: 18px; color:#000"><i class="fa fa-home"></i></a>
             </li>
         </ul>
 

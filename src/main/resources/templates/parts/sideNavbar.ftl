@@ -22,13 +22,15 @@
         width: 260px;
         left: 0;
         z-index: 1030;
-        background-color: #f43a09;
+        background-color: #fff;
+        border-top-right-radius: 15px;
     }
 
     .sidebar .logo {
         position: relative;
         padding: 0.5rem 0.7rem;
         z-index: 4;
+        background: #fff;
     }
 
     .sidebar .logo:after {
@@ -68,6 +70,8 @@
         width: 260px;
         z-index: 4;
         padding-bottom: 100px;
+        background: #f43a09;
+        border-top-right-radius: 160px;
     }
 
     .sidebar .nav {
@@ -193,7 +197,6 @@
     /* Track */
     ::-webkit-scrollbar-track
     {
-        box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.3);
         border-radius: 15px;
         border: none;
     }
@@ -203,7 +206,6 @@
     {
         border: none;
         border-radius: 10px;
-        box-shadow: inset 3px 2px 6px rgba(80, 80, 80, 0.3);
         background-color: #fff;
     }
 
@@ -307,7 +309,7 @@
     <div class="logo">
         <a href="#" class="simple-text logo-normal">
             <svg style="width: 50px;height: 50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512"><g id="graduate-avatar-laptop-education"><path d="M61,56H59.7a7.124,7.124,0,0,0,.3-2,6.952,6.952,0,0,0-2-4.89V41a5.017,5.017,0,0,0-4-4.9V33a3.009,3.009,0,0,0-3-3H40.48A10.928,10.928,0,0,0,43,23V21.86a3.987,3.987,0,0,0-.1-7.75l-.63-5L45,8.33V12h2V7a1,1,0,0,0-.73-.96l-14-4a.991.991,0,0,0-.54,0l-14,4a1,1,0,0,0,0,1.92l4,1.15-.63,5a3.987,3.987,0,0,0-.1,7.75V23a11.03,11.03,0,0,0,2.53,7H13a3.009,3.009,0,0,0-3,3v3.1A5.017,5.017,0,0,0,6,41v8.11A6.952,6.952,0,0,0,4,54a7.062,7.062,0,0,0,.29,2H3a1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H61a1,1,0,0,0,1-1V57A1,1,0,0,0,61,56ZM43,16.28a1.979,1.979,0,0,1,0,3.44ZM21,19.72a1.979,1.979,0,0,1,0-3.44ZM54,38.17A3.014,3.014,0,0,1,56,41v6.68a7.03,7.03,0,0,0-2-.6ZM54,49.1A5.017,5.017,0,0,1,58,54a5.085,5.085,0,0,1-.42,2H55.82A3,3,0,0,0,56,55V54a2.006,2.006,0,0,0-2-2ZM21.64,7,32,4.04,42.36,7,32,9.96Zm19.23,7H23.13l.55-4.34,8.05,2.3a.931.931,0,0,0,.54,0l8.05-2.3ZM23,23V16H41v7a8.942,8.942,0,0,1-2.64,6.36,6.406,6.406,0,0,1-.74.64H26.37A9.039,9.039,0,0,1,23,23ZM12,33a1,1,0,0,1,1-1H51a1,1,0,0,1,1,1V52H12ZM54,54v1a1,1,0,0,1-1,1H11a1,1,0,0,1-1-1V54ZM8,41a3.014,3.014,0,0,1,2-2.83v8.91a7.03,7.03,0,0,0-2,.6Zm2,8.1V52a2.006,2.006,0,0,0-2,2v1a3,3,0,0,0,.18,1H6.42A5,5,0,0,1,10,49.1ZM60,60H4V58H60Z"/><path d="M32,46a4,4,0,0,0,4-4H34a2,2,0,1,1-2-2V38a4,4,0,0,0,0,8Z"/><path d="M28,23a1,1,0,0,0,1-1V20a1,1,0,0,0-2,0v2A1,1,0,0,0,28,23Z"/><path d="M36,19a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V20A1,1,0,0,0,36,19Z"/><path d="M32,27c-1.936,0-3-.751-3-1H27c0,1.71,2.149,3,5,3s5-1.29,5-3H35C35,26.249,33.936,27,32,27Z"/></g></svg>
-            <p>Acinonyx Soft</p>
+            <p style="color: #000;">Acinonyx Soft</p>
         </a>
     </div>
     <div class="sidebar-wrapper" id="sidebar-wrapper">
