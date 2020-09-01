@@ -52,10 +52,52 @@
     .card__col .img__box svg {
         width: 67px;
         height: 50px;
-        color: yellow;
     }
     .card__col:hover {
         transform: scale(1.1);
+    }
+
+    .folder__box {
+        position: relative;
+        width: 200px;
+        height: 180px;
+        transition: all 650ms;
+    }
+    .folder__box:hover .folder__span__top, .folder__box:hover .folder__span_div {
+        background: #f43a09;
+    }
+    .folder__span {
+        position: absolute;
+        clip-path: polygon(35% 0, 100% 0%, 100% 20%, 50% 20%);
+        top: 0;
+        background: #fff;
+        width: 100%;
+        height: 100px;
+        right: 0;
+        transition: all 650ms;
+    }
+    .folder__span__top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        clip-path: polygon(35% 0, 50% 20%, 0 20%, 0 0);
+        width: 100%;
+        height: 100px;
+        background: #183E59;
+        transition: all 650ms;
+        border-top-left-radius: 25px;
+    }
+    .folder__span_div {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #183E59;
+        width: 100%;
+        height: 160px;
+        transition: all 650ms;
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
     }
 </style>
 <body>
@@ -77,7 +119,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 mt-3">
                         <div class="row">
                             <div class="card__col">
                                 <div class="img__box">
@@ -223,39 +265,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="card__col">
-                                <div class="img__box">
-
+                        <div class="container-fluid mt-3">
+                            <div class="row">
+                                <div class="folder__box ml-2">
+                                    <span class="folder__span__top"></span>
+                                    <span class="folder__span"></span>
+                                    <span class="folder__span_div"></span>
                                 </div>
-                                <div class="text__box">
-
-                                </div>
-                            </div>
-                            <div class="card__col">
-                                <div class="img__box">
-
-                                </div>
-                                <div class="text__box">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="card__col">
-                                <div class="img__box">
-
-                                </div>
-                                <div class="text__box">
-
-                                </div>
-                            </div>
-                            <div class="card__col">
-                                <div class="img__box">
-
-                                </div>
-                                <div class="text__box">
-
+                                <div class="folder__box" style="margin-left: 75px">
+                                    <span class="folder__span__top"></span>
+                                    <span class="folder__span"></span>
+                                    <span class="folder__span_div"></span>
                                 </div>
                             </div>
                         </div>
