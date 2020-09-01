@@ -98,6 +98,8 @@
         border-top-right-radius: 25px;
         border-bottom-left-radius: 25px;
         border-bottom-right-radius: 25px;
+        padding: 20px;
+        cursor: pointer;
     }
 </style>
 <body>
@@ -270,12 +272,16 @@
                                 <div class="folder__box ml-2">
                                     <span class="folder__span__top"></span>
                                     <span class="folder__span"></span>
-                                    <span class="folder__span_div"></span>
+                                    <span class="folder__span_div">
+                                        <h5 style="color: #fff;font-size: 14px;">Your Folder</h5>
+                                    </span>
                                 </div>
                                 <div class="folder__box" style="margin-left: 75px">
                                     <span class="folder__span__top"></span>
                                     <span class="folder__span"></span>
-                                    <span class="folder__span_div"></span>
+                                    <span class="folder__span_div">
+                                        <h5 style="color: #fff;font-size: 14px;">Your Folder</h5>
+                                    </span>
                                 </div>
                             </div>
                         </div>
