@@ -4,6 +4,8 @@ import com.Domain.Role;
 import com.Domain.User;
 import com.Repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -78,8 +80,9 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public List<User> findAll() {
-        return userRepo.findAll();
+    public Page<User> findAll() {
+        PageRequest pageRequest = PageRequest.of(0,5);
+        return userRepo.findAll(pageRequest);
     }
 
     public void saveUser(User user, String username, Map<String, String> form) {

@@ -5,12 +5,14 @@ import com.Domain.Role;
 import com.Domain.User;
 import com.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -22,8 +24,9 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model) {
-
-            model.addAttribute("users", userService.findAll());
+        Page<User> page = userService.findAll();
+        List<User> list = page.getContent();
+            model.addAttribute("users", list);
         return "userList";
     }
     @PreAuthorize("hasAuthority('ADMIN')")

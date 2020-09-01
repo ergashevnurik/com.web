@@ -22,7 +22,7 @@
         width: 260px;
         left: 0;
         z-index: 1030;
-        background-color: #f43a09;;
+        background-color: #f43a09;
     }
 
     .sidebar .logo {
