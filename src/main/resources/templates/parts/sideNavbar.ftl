@@ -22,7 +22,7 @@
         width: 260px;
         left: 0;
         z-index: 1030;
-        background-color: #fff;
+        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
         border-top-right-radius: 15px;
     }
 
@@ -30,10 +30,11 @@
         position: relative;
         padding: 0.5rem 0.7rem;
         z-index: 4;
-        background: #fff;
+        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+        overflow-x: hidden;
     }
 
-    .sidebar .logo:after {
+    /*.sidebar .logo:after {
         content: '';
         position: absolute;
         bottom: 0;
@@ -41,7 +42,7 @@
         height: 1px;
         width: calc(100% - 30px);
         background-color: rgba(255, 255, 255, 0.5);
-    }
+    }*/
 
     .sidebar .logo a.logo-normal {
         display: block;
@@ -66,12 +67,16 @@
     .sidebar .sidebar-wrapper {
         position: relative;
         height: calc(100vh - 75px);
-        overflow: auto;
+        overflow: hidden;
         width: 260px;
         z-index: 4;
         padding-bottom: 100px;
-        background: #f43a09;
+        background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
         border-top-right-radius: 160px;
+    }
+
+    .sidebar .sidebar-wrapper:hover {
+        overflow: auto;
     }
 
     .sidebar .nav {
@@ -206,12 +211,12 @@
     {
         border: none;
         border-radius: 10px;
-        background-color: #fff;
+        background: #d9e7ff;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: #f2f0f0b9;
+        background: #d9e7ff;
     }
 
 

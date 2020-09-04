@@ -182,12 +182,103 @@
             transform: translate(-50%, -50%) rotate(-45deg);
             background: #000;
         }
-        .banner.active .table_container, .banner.active .btn {
+        .banner.active .table_container, .banner.active .btn, .banner.active .sidebar-container, .banner.active .block-item,
+        .banner.active .sidebar-logo, .banner.active .sidebar-navigation, .banner.active .sidebar-navigation li a {
             background: rgba(0,0,0,0.05);
             border: none;
             outline: none;
             color: #000;
         }
+        .banner.active .sidebar-container {
+            top: 105px;
+            right: 0;
+        }
+
+        .btn-style {
+            background-color: #2bd19f;
+            color: #fff;
+            font-size: 17px;
+        }
+
+        .btn-style:hover {
+            color: #fff;
+            background-color: #00E65F;
+        }
+
+        .block-item {
+            background-color: #585b6085;
+            color: white;
+            width: max-content;
+            height: 40px;
+            padding: 0 10px;
+        }
+
+        /*Navigation Sidebar Right*/
+
+        .sidebar-container {
+            position: fixed;
+            width: 220px;
+            height: auto;
+            top: 160px;
+            right: 5px;
+            background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+            color: #FFFFFF;
+        }
+
+        .sidebar-logo {
+            padding: 10px 15px 10px 30px;
+            font-size: 20px;
+            background: rgba(58, 71, 213, 0.92);
+            text-align: center;
+        }
+
+        .sidebar-navigation {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            position: relative;
+        }
+
+        .sidebar-navigation li {
+            background-color: transparent;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            line-height: 20px;
+        }
+
+        .sidebar-navigation li a {
+            padding: 10px 15px 10px 30px;
+            display: block;
+            color: #fff;
+        }
+
+        .sidebar-navigation li .fa {
+            margin-right: 10px;
+        }
+
+        .sidebar-navigation li a:active,
+        .sidebar-navigation li a:hover,
+        .sidebar-navigation li a:focus {
+            text-decoration: none;
+            outline: none;
+        }
+
+        /*.sidebar-navigation li::before {
+            background-color: #2574A9;
+            position: absolute;
+            content: '';
+            height: 100%;
+            left: 0;
+            top: 0;
+            transition: width 0.2s ease-in;
+            width: 3px;
+            z-index: -1;
+        }
+
+        .sidebar-navigation li:hover::before {
+            width: 100%;
+        }*/
 
         #mySidenav a {
             position: absolute;
@@ -236,38 +327,45 @@
             <a href="/video" id="projects">Extra Lesson</a>
         </div>
 
+    <section class="banner" id="sec" style="padding-right: 220px">
         <div class="container" style="display: flex;margin-top: 0!important;">
 
             <#if isAdmin>
                 <div id="toggle" onclick="toggle()">
-                    <span class="btn btn-success mt-3 ml-3" style="border-radius: 50%;">
-                        <span class="font-size: 60px">
-                            <i class="fa fa-plus"></i>
-                        </span>
-                    </span>
+                  <span class="btn mt-3 ml-3 btn-style" style="border-radius: 50%;">
+                      <span class="font-size: 60px">
+                          <i class="fa fa-plus"></i>
+                      </span>
+                  </span>
                 </div>
             </#if>
 
             <div class="mt-3 ml-3">
-                <form class="form-inline my-2 my-lg-0" method="get">
-                    <input class="form-control mr-sm-2" type="text" value="${filter?ifExists}" placeholder="Search" aria-label="Search" name="filter">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="form-inline my-2 my-lg-0 input-group" method="get">
+                    <input class="form-control" style="width: 170px" type="text" value="${filter?ifExists}" placeholder="Search" aria-label="Search" name="filter">
+                    <div class="input-group-append">
+                        <button class="btn btn-style" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </form>
             </div>
 
             <div class="mt-3 ml-3">
-                <a href="/assignment/export" class="btn btn-success">Export to Pdf</a>
+                <a href="/assignment/export" class="btn btn-style" style="width: 135px;">Export to Pdf</a>
             </div>
 
             <div class="mt-3 ml-3">
-                <a href="/assignment/csv" class="btn btn-success">Export to CSV</a>
+                <a href="/assignment/csv" class="btn btn-style" style="width: 135px;">Export to CSV</a>
             </div>
 
-            <div class="mt-3 ml-auto">
+            <div class="mt-3 ml-3 block-item">
                 <p class="pt-2 pr-2">Total Items: ${totalElements} - Page ${currentPage} out of ${totalPages}</p>
             </div>
 
         </div>
+
+
 
             <div class="container mt-5 table_container">
 
@@ -346,6 +444,32 @@
                 </div>
 
             </div>
+
+        <div class="sidebar-container">
+            <div class="sidebar-logo">
+                Navigation
+            </div>
+            <ul class="sidebar-navigation">
+
+                <li>
+                    <a href="#">
+                        Assignment
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Current classes
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Extra classes
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
     </section>
 
     <div id="navigation">
