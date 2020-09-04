@@ -66,6 +66,9 @@
     .folder__box:hover .folder__span__top, .folder__box:hover .folder__span_div {
         background: #f43a09;
     }
+    .folder__box:hover .folder__span_div {
+
+    }
     .folder__span {
         position: absolute;
         clip-path: polygon(35% 0, 100% 0%, 100% 20%, 50% 20%);
@@ -267,22 +270,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container-fluid mt-3">
-                            <div class="row">
-                                <div class="folder__box ml-2">
-                                    <span class="folder__span__top"></span>
-                                    <span class="folder__span"></span>
-                                    <span class="folder__span_div">
+                    </div>
+
+                    <div class="container-fluid mt-3">
+                        <div class="row">
+                            <div class="folder__box ml-2">
+                                <span class="folder__span__top"></span>
+                                <span class="folder__span"></span>
+                                <span class="folder__span_div">
                                         <h5 style="color: #fff;font-size: 14px;">Your Folder</h5>
-                                    </span>
-                                </div>
-                                <div class="folder__box" style="margin-left: 75px">
-                                    <span class="folder__span__top"></span>
-                                    <span class="folder__span"></span>
-                                    <span class="folder__span_div">
+                                </span>
+                            </div>
+                            <div class="folder__box" style="margin-left: 75px">
+                                <span class="folder__span__top"></span>
+                                <span class="folder__span"></span>
+                                <span class="folder__span_div">
                                         <h5 style="color: #fff;font-size: 14px;">Your Folder</h5>
-                                    </span>
-                                </div>
+                                </span>
                             </div>
                         </div>
                     </div>

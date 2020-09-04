@@ -189,9 +189,53 @@
             color: #000;
         }
 
+        #mySidenav a {
+            position: absolute;
+            left: -180px;
+            transition: 0.3s;
+            padding: 10px;
+            width: 200px;
+            text-align: left;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            border-radius: 0 5px 5px 0;
+        }
+
+        #mySidenav a:hover {
+            left: 0;
+        }
+
+        #about {
+            top: 20px;
+            background-color: #4CAF50;
+        }
+
+        #blog {
+            top: 80px;
+            background-color: #2196F3;
+        }
+
+        #projects {
+            top: 140px;
+            background-color: #f44336;
+        }
+
+        #contact {
+            top: 200px;
+            background-color: #555
+        }
+
     </style>
 
     <section class="banner" id="sec">
+
+        <div id="mySidenav" class="sidenav">
+            <a href="/assignment" id="about">My Assignment</a>
+            <a href="/lessonTable" id="blog">My Lesson</a>
+            <a href="/video" id="projects">Extra Lesson</a>
+        </div>
+
         <div class="container" style="display: flex;margin-top: 0!important;">
 
             <#if isAdmin>
@@ -228,6 +272,7 @@
             <div class="container mt-5 table_container">
 
                 <!-- Tab panes -->
+                <div class="table-responsive">
                 <table class="table table-striped mt-4">
 
                     <thead>
@@ -261,6 +306,7 @@
                     </tbody>
 
                 </table>
+                </div>
 
 
                 <div class="ml-auto">

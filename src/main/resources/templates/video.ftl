@@ -75,187 +75,233 @@
             box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
         }
 
+         #mySidenav a {
+             position: absolute;
+             left: -180px;
+             transition: 0.3s;
+             padding: 10px;
+             width: 200px;
+             text-align: left;
+             text-decoration: none;
+             z-index: 10;
+             font-size: 20px;
+             color: white;
+             border-radius: 0 5px 5px 0;
+         }
 
+        #mySidenav a:hover {
+            left: 0;
+        }
 
+        #about {
+            top: 20px;
+            background-color: #4CAF50;
+        }
+
+        #blog {
+            top: 80px;
+            background-color: #2196F3;
+        }
+
+        #projects {
+            top: 140px;
+            background-color: #f44336;
+        }
+
+        #contact {
+            top: 200px;
+            background-color: #555
+        }
+        .banner {
+            position: relative;
+        }
     </style>
 
-    <!-- Mai Body For Mark Up For You Man -->
-
-    <div class="container mt-5">
-        <ul class="nav nav-tabs" id="tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#assignment" role="tab">MATH</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#extraClasses" role="tab">PHYSICS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#myClasses" role="tab">ENGLISH</a>
-            </li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content" id="content">
-            <div class="tab-pane active" id="assignment" role="tabpanel">
-                <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TMubSggUOVE?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/grnP3mduZkM?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vhm8ri0XNBM?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JnLDmw3bbuw?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dD14EEhdRMI?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e4o7X6LyX-I?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6RMN5Pf1fHU?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_PnPM8VVHBA?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="extraClasses" role="tabpanel">
-                <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TMubSggUOVE?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/grnP3mduZkM?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vhm8ri0XNBM?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JnLDmw3bbuw?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dD14EEhdRMI?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e4o7X6LyX-I?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6RMN5Pf1fHU?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_PnPM8VVHBA?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="myClasses" role="tabpanel">
-                <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TMubSggUOVE?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/grnP3mduZkM?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vhm8ri0XNBM?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JnLDmw3bbuw?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dD14EEhdRMI?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e4o7X6LyX-I?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6RMN5Pf1fHU?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div style="width: 420px; height: 345px; margin: 10px;">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_PnPM8VVHBA?rel=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    <section class="banner">
+        <div id="mySidenav" class="sidenav">
+            <a href="/assignment" id="about">My Assignment</a>
+            <a href="/lessonTable" id="blog">My Lesson</a>
+            <a href="/video" id="projects">Extra Lesson</a>
         </div>
 
-    </div>
+        <!-- Mai Body For Mark Up For You Man -->
+
+        <div class="container mt-5">
+            <ul class="nav nav-tabs" id="tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#assignment" role="tab">MATH</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#extraClasses" role="tab">PHYSICS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#myClasses" role="tab">ENGLISH</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" id="content">
+                <div class="tab-pane active" id="assignment" role="tabpanel">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TMubSggUOVE?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/grnP3mduZkM?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vhm8ri0XNBM?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JnLDmw3bbuw?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dD14EEhdRMI?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e4o7X6LyX-I?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6RMN5Pf1fHU?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_PnPM8VVHBA?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="extraClasses" role="tabpanel">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TMubSggUOVE?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/grnP3mduZkM?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vhm8ri0XNBM?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JnLDmw3bbuw?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dD14EEhdRMI?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e4o7X6LyX-I?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6RMN5Pf1fHU?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_PnPM8VVHBA?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="myClasses" role="tabpanel">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TMubSggUOVE?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/grnP3mduZkM?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vhm8ri0XNBM?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/JnLDmw3bbuw?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dD14EEhdRMI?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/e4o7X6LyX-I?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6RMN5Pf1fHU?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div style="width: 420px; height: 345px; margin: 10px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_PnPM8VVHBA?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
 
 
 </@c.page>
