@@ -326,80 +326,10 @@
                 </a>
             </li>
             <li>
-                <a class="dropdown-btn">
+                <a href="/mySubjects">
                     <i class="fas fa-chalkboard-teacher"></i>
-                        <p>My Subjects</p>
+                    <p>My Subjects</p>
                 </a>
-                <div class="dropdown-container">
-                    <#if isMath>
-                        <a class="dropdown-btn">
-                            <i class="fas fa-caret-down"></i>
-                            <p>Math</p>
-                        </a>
-                        <div class="dropdown-container">
-                            <a href="/assignment">
-                                <p>Assignment</p>
-                            </a>
-                            <a href="/lessonTable">
-                                <p>MyClasses</p>
-                            </a>
-                            <a href="/classes">
-                                <p>Extra Lesson</p>
-                            </a>
-                        </div>
-                    </#if>
-                    <#if isEnglish>
-                        <a class="dropdown-btn">
-                            <i class="fas fa-caret-down"></i>
-                            <p>English</p>
-                        </a>
-                        <div class="dropdown-container">
-                            <a href="/classes">
-                                <p>Assignment</p>
-                            </a>
-                            <a href="/classes">
-                                <p>Extra Classes</p>
-                            </a>
-                            <a href="/classes">
-                                <p>My Lesson</p>
-                            </a>
-                        </div>
-                    </#if>
-                    <#if isRussian>
-                        <a class="dropdown-btn">
-                            <i class="fas fa-caret-down"></i>
-                            <p>Russia</p>
-                        </a>
-                        <div class="dropdown-container">
-                            <a href="/classes">
-                                <p>Assignment</p>
-                            </a>
-                            <a href="/classes">
-                                <p>Extra Classes</p>
-                            </a>
-                            <a href="/classes">
-                                <p>My Lesson</p>
-                            </a>
-                        </div>
-                    </#if>
-                    <#if isPhysics>
-                        <a class="dropdown-btn">
-                            <i class="fas fa-caret-down"></i>
-                            <p>Physics</p>
-                        </a>
-                        <div class="dropdown-container">
-                            <a href="/classes">
-                                <p>Assignment</p>
-                            </a>
-                            <a href="/classes">
-                                <p>Extra Classes</p>
-                            </a>
-                            <a href="/classes">
-                                <p>My Lesson</p>
-                            </a>
-                        </div>
-                    </#if>
-                </div>
             </li>
             <li>
                 <a href="#">
