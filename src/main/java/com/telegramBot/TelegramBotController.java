@@ -1,21 +1,18 @@
 package com.telegramBot;
 
-import com.vdurmont.emoji.EmojiParser;
+import com.Domain.User;
+import com.Repos.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.*;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.IOException;
-import java.security.Key;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -25,6 +22,9 @@ public class TelegramBotController extends TelegramLongPollingBot {
 
     private final String BOT_USERNAME = "MENZcompany_bot";
     private final String BOT_TOKEN = "710487044:AAE1g-UCvoY_ACJ410QUFNlYxJZRJm4WUbE";
+
+    @Autowired
+    private UserRepo userRepo;
 
     private void log(String firstName, String lastName, String userId, String text, String bot_answer) {
         System.out.println("\n-----------------------------------------");
@@ -129,29 +129,154 @@ public class TelegramBotController extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
-        initializeBot(update);
+        String message = update.getMessage().getText();
+        long chat_id = update.getMessage().getChatId();
+        SendMessage sendMessage = new SendMessage()
+                .setText("Welcome To Our Channel")
+                .setChatId(chat_id);
 
-        if (update.hasMessage() && update.getMessage().hasText()) {
+//        initializeBot(update);
 
-            // First Name
-            String firstName = update.getMessage().getChat().getFirstName();
-            // Last Name
-            String lastName = update.getMessage().getChat().getLastName();
-            // User Name
-            String userName = update.getMessage().getChat().getUserName();
-            // User ID
-            long userId = update.getMessage().getChat().getId();
-            // Bot Answer
-            String answer = "Getting User Information";
+        // First Name
+        String firstName = update.getMessage().getChat().getFirstName();
+        // Last Name
+        String lastName = update.getMessage().getChat().getLastName();
+        // User Name
+        String userName = update.getMessage().getChat().getUserName();
+        // User ID
+        long userId = update.getMessage().getChat().getId();
+        // Bot Answer
+        String answer = "Getting User Information";
 
-            log(firstName, lastName, userName, Long.toString(userId), answer);
+        log(firstName, lastName, userName, Long.toString(userId), answer);
 
-            sendMessageOnTime(update);
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        List<KeyboardRow> keyboardRows = new ArrayList<>();
+        KeyboardRow keyboardButtons = new KeyboardRow();
 
-        }
+        if (message.equals("/start") || message.toLowerCase().equals("start") || message.equals("O'rtga◀") ||
+                message.equals("Назад◀") || message.equals("Back◀")) {
 
-       /* else *//**//*if (update.hasMessage() && update.getMessage().hasPhoto()) {
-            long chat_id = update.getMessage().getChatId();
+            if (message.equals("O'rtga◀") || message.equals("Назад◀") || message.equals("Back◀")) {
+                sendMessage.setText("\uD83C\uDDFA\uD83C\uDDF8Choose Language\n"
+                        + "\uD83C\uDDF7\uD83C\uDDFAВыберите Язык\n"
+                        + "\uD83C\uDDFA\uD83C\uDDFFTil Tanglang");
+            }
+
+                keyboardButtons.add("O'zbek Tili\uD83C\uDDFA\uD83C\uDDFF");
+                keyboardRows.add(keyboardButtons);
+
+                KeyboardRow keyboardButtons1 = new KeyboardRow();
+                keyboardButtons1.add("Русский Язык\uD83C\uDDF7\uD83C\uDDFA");
+                keyboardRows.add(keyboardButtons1);
+
+                KeyboardRow keyboardButtons2 = new KeyboardRow();
+                keyboardButtons2.add("English Language\uD83C\uDDFA\uD83C\uDDF8");
+                keyboardRows.add(keyboardButtons2);
+
+                replyKeyboardMarkup.setKeyboard(keyboardRows);
+                sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
+                try {
+                    execute(sendMessage);
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+
+        } else if (message.equals("O'zbek Tili\uD83C\uDDFA\uD83C\uDDFF")) {
+            sendMessage.setText("Siz O'zbek Tilni Tanladiz");
+            sendMessage.setText("Hush Kelibsiz");
+
+            keyboardButtons.add("Menu");
+            keyboardButtons.add("Bizning Haqimizda");
+            keyboardButtons.add("Kontaktlar");
+
+            keyboardRows.add(keyboardButtons);
+
+            KeyboardRow keyboardButtons1 = new KeyboardRow();
+
+            keyboardButtons1.add("Mening Buyurtmalarim");
+            keyboardButtons1.add("Comment Qoldirish");
+            keyboardButtons1.add("O'rtga◀");
+
+            keyboardRows.add(keyboardButtons1);
+
+            KeyboardRow keyboardButtons2 = new KeyboardRow();
+            keyboardButtons2.add("Nastroykala⚙");
+
+            keyboardRows.add(keyboardButtons2);
+            replyKeyboardMarkup.setKeyboard(keyboardRows);
+            sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
+            try {
+                execute(sendMessage);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+
+        } else if (message.equals("Русский Язык\uD83C\uDDF7\uD83C\uDDFA")) {
+            sendMessage.setText("Вы Выбрали Русский Язык");
+            sendMessage.setText("Добро Пожаловать");
+
+
+            keyboardButtons.add("Меню");
+            keyboardButtons.add("О Нас");
+            keyboardButtons.add("Контакты");
+
+            keyboardRows.add(keyboardButtons);
+
+            KeyboardRow keyboardButtons1 = new KeyboardRow();
+
+            keyboardButtons1.add("Мои Заказы");
+            keyboardButtons1.add("Оставить Отзыв");
+            keyboardButtons1.add("Назад◀");
+
+            keyboardRows.add(keyboardButtons1);
+
+            KeyboardRow keyboardButtons2 = new KeyboardRow();
+            keyboardButtons2.add("Настройки⚙");
+
+            keyboardRows.add(keyboardButtons2);
+            replyKeyboardMarkup.setKeyboard(keyboardRows);
+            sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
+            try {
+                execute(sendMessage);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+
+        } else if (message.equals("English Language\uD83C\uDDFA\uD83C\uDDF8")) {
+            sendMessage.setText("Welcome");
+            sendMessage.setText("You Chose English Language");
+
+            keyboardButtons.add("Menu");
+            keyboardButtons.add("About Us");
+            keyboardButtons.add("Contacts");
+
+            keyboardRows.add(keyboardButtons);
+
+            KeyboardRow keyboardButtons1 = new KeyboardRow();
+
+            keyboardButtons1.add("My Orders");
+            keyboardButtons1.add("Leave Feedbacks");
+            keyboardButtons1.add("Back◀");
+
+            keyboardRows.add(keyboardButtons1);
+
+            KeyboardRow keyboardButtons2 = new KeyboardRow();
+            keyboardButtons2.add("Настройки⚙");
+
+            keyboardRows.add(keyboardButtons2);
+            replyKeyboardMarkup.setKeyboard(keyboardRows);
+            sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
+            try {
+                execute(sendMessage);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        } else if (update.hasMessage() && update.getMessage().hasPhoto()) {
             List<PhotoSize> sendPhotos = update.getMessage().getPhoto();
 
             //File ID
@@ -181,6 +306,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         }
+        /*
         String message_text = update.getMessage().getText();
         long chat_id = update.getMessage().getChatId();
 
@@ -273,9 +399,7 @@ public class TelegramBotController extends TelegramLongPollingBot {
             List<KeyboardRow> keyboardRows = new ArrayList<>();
             KeyboardRow keyboardButtons = new KeyboardRow();
 
-            keyboardButtons.add("O'zbek Tili\uD83C\uDDFA\uD83C\uDDFF");
-            keyboardButtons.add("Русский Язык\uD83C\uDDF7\uD83C\uDDFA");
-            keyboardButtons.add("English Language\uD83C\uDDFA\uD83C\uDDF8");
+
 
             keyboardRows.add(keyboardButtons);
             replyKeyboardMarkup.setKeyboard(keyboardRows);
