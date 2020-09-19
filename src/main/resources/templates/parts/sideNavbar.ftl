@@ -22,7 +22,7 @@
         width: 260px;
         left: 0;
         z-index: 1030;
-        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+        background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 100%);
         border-top-right-radius: 15px;
     }
 
@@ -30,7 +30,7 @@
         position: relative;
         padding: 0.5rem 0.7rem;
         z-index: 4;
-        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+        background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 100%);
         overflow-x: hidden;
     }
 
@@ -211,12 +211,12 @@
     {
         border: none;
         border-radius: 10px;
-        background: #d9e7ff;
+        background: #ffffff;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: #d9e7ff;
+        background: transparent;
     }
 
 
