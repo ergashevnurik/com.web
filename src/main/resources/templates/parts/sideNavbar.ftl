@@ -352,7 +352,7 @@
             <li>
                 <a href="/entertainment">
                     <i class="fas fa-dice"></i>
-                    <p><@spring.message "menu.intertainment" /></p>
+                    <p><@spring.message "menu.entertainment" /></p>
                 </a>
             </li>
             <li>
