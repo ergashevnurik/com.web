@@ -45,34 +45,21 @@
                 <a href="#" class="ml-3 btn" style="font-size: 18px; color:#000"><i class="fa fa-home"></i></a>
             </li>
 
-            <li>
-                <select id="locales">
-                    <option value=""></option>
-                    <option value="en"><@spring.message "main.eng"/></option>
-                    <option value="ru"><@spring.message "main.ru"/></option>
-                    <option value="uz"><@spring.message "main.uz"/></option>
-                </select>
+            <li class="nav-item">
+                <div class="dropdown ml-3">
+                    <a class="btn dropdown-toggle" href="#" role="button" style="font-size: 18px; color:#000;border: none" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-globe"></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-lg-right p-2" aria-labelledby="dropdownMenuLink">
+                        <h6><a href="?lang=en"><@spring.message "main.eng"/></a></h6>
+                        <h6><a href="?lang=ru"><@spring.message "main.ru"/></a></h6>
+                        <h6><a href="?lang=uz"><@spring.message "main.uz"/></a></h6>
+                    </div>
+                </div>
             </li>
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#locales").change(function () {
-            var selectedOption = $('#locales').val();
-            if (selectedOption != ''){
-                window.location.replace('?lang=' + selectedOption);
-            }
-        });
-    });
-</script>
         </ul>
-
-
     </div>
-
 </nav>
 
 <!-- Navbar Ends Here -->

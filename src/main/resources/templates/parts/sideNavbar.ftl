@@ -322,74 +322,74 @@
             <li class="active ">
                 <a href="/dashboard">
                     <i class="fas fa-home"></i>
-                    <p>Dashboard</p>
+                    <p><@spring.message "menu.Dashboard" /></p>
                 </a>
             </li>
             <li>
                 <a href="/mySubjects">
                     <i class="fas fa-chalkboard-teacher"></i>
-                    <p>My Subjects</p>
+                    <p><@spring.message "menu.Subjects" /></p>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fas fa-comments"></i>
-                    <p>Chat</p>
+                    <p><@spring.message "menu.chat" /></p>
                 </a>
             </li>
             <li>
                 <a href="/main">
                     <i class="fas fa-book-open"></i>
-                    <p>Library</p>
+                    <p><@spring.message "menu.library" /></p>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fas fa-text-height"></i>
-                    <p>Grades</p>
+                    <p><@spring.message "menu.grades" /></p>
                 </a>
             </li>
             <li>
                 <a href="/entertainment">
                     <i class="fas fa-dice"></i>
-                    <p>Entertainment</p>
+                    <p><@spring.message "menu.intertainment" /></p>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fas fa-video"></i>
-                    <p>Video Chat</p>
+                    <p><@spring.message "menu.videoChat" /></p>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fas fa-lightbulb"></i>
-                    <p>Ideas</p>
+                    <p><@spring.message "menu.ideas" /></p>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fas fa-cube"></i>
-                    <p>Competition</p>
+                    <p><@spring.message "menu.competitions" /></p>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fas fa-text-height"></i>
-                    <p>Training</p>
+                    <p><@spring.message "menu.training" /></p>
                 </a>
             </li>
             <li>
                 <a href="/shop">
                     <i class="fas fa-shopping-cart"></i>
-                    <p>Shop</p>
+                    <p><@spring.message "menu.shop" /></p>
                 </a>
             </li>
             <#if isAdmin>
                 <li>
                     <a href="/user">
                         <i class="fas fa-users"></i>
-                        <p>User List</p>
+                        <p><@spring.message "menu.userList" /></p>
                     </a>
                 </li>
             </#if>
