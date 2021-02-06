@@ -92,6 +92,8 @@
                         <th>ID</th>
                         <th>TITLE</th>
                         <th>DESCRIPTION</th>
+                        <th>ACTIONS</th>
+                        <th></th>
                     </tr>
                     </thead>
 
@@ -101,6 +103,10 @@
                             <th>${message.id}</th>
                             <th><a href="/lessonView/${message.id}">${message.title}</a></th>
                             <th>${message.description}</th>
+                            <#if isAdmin>
+                                <th><a href="/delete-lesson/${message.id}" class="btn btn-danger">Delete</a></th>
+                                <th><a href="/update-lesson/${message.id}" class="btn btn-info">Update</a></th>
+                            </#if>
                         </tr>
                     <#else>
                         No Message

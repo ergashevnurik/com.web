@@ -13,8 +13,8 @@
                     </div>
                     <!--Material textarea-->
                     <div class="form-group">
-                            <textarea class="form-control" name="description"
-                                      placeholder="Enter Description" value="${description!''}"></textarea>
+                            <input type="text" class="form-control" name="description"
+                                      placeholder="Enter Description" value="${description!''}"></input>
                     </div>
                     <div class="form-group">
                         <div class="custom-file">
