@@ -1,9 +1,11 @@
 package com.Controllers;
 
+import com.Domain.AssignmentSubmission;
 import com.Domain.EdsClasses;
 import com.Exception.StorageExceptionNotFound;
 import com.PDFExport.ClassesPdfExport;
 import com.PDFExport.ClassesTablePdfExport;
+import com.Repos.AssignmentSubmissionRepo;
 import com.Repos.ClassesRepo;
 import com.Repos.ClassesServiceRepo;
 import com.Services.ClassesService;
@@ -45,6 +47,9 @@ public class ClassesController {
 
     @Autowired
     private ClassesRepo classesRepo;
+
+    @Autowired
+    private AssignmentSubmissionRepo assignmentSubmissionRepo;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -189,6 +194,33 @@ public class ClassesController {
         return "assignmentForm";
     }
 
+    @PostMapping("/submit-assignment")
+    public String submitAssignment(@RequestParam String assignmentTitle,
+                                   @RequestParam("assignmentFile") MultipartFile assignmentFile,
+                                   @RequestParam String assignmentDescription, Model model) throws IOException {
+        AssignmentSubmission assignmentSubmission = new AssignmentSubmission(assignmentTitle, assignmentDescription);
+
+        if (assignmentFile != null) {
+
+            File uploadDir = new File(uploadPath);
+
+            if(!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+
+            String uuidFilename = UUID.randomUUID().toString();
+            String resultFilename = uuidFilename + "." + assignmentFile.getOriginalFilename();
+            assignmentFile.transferTo(new File(uploadPath + "/" + resultFilename));
+            assignmentSubmission.setAssignmentFileName(resultFilename);
+        }
+
+        assignmentSubmissionRepo.save(assignmentSubmission);
+
+        model.addAttribute("assignmentTitle", assignmentSubmission.getAssignmentTitle());
+        model.addAttribute("assignmentDescription", assignmentSubmission.getAssignmentDescription());
+        return "assignmentTable";
+    }
+
     @PostMapping("/add-assignment")
     public String add(@RequestParam String title, @RequestParam String bookTitle,
                       @RequestParam String description, @RequestParam Integer extendedDate,
@@ -225,5 +257,11 @@ public class ClassesController {
         return ResponseEntity.notFound().build();
     }
 
+    @RequestMapping(value = "/delete-assignment/(edsClasses)", method = RequestMethod.GET)
+    public String deleteAssignment(@PathVariable EdsClasses edsClasses, Model model) {
+        classesRepo.deleteByTitle(edsClasses.getTitle());
+        model.addAttribute("id", edsClasses);
+        return "redirect:/assignment";
+    }
 
 }

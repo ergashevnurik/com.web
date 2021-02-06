@@ -1,13 +1,11 @@
 package com.Controllers;
 
-import com.Domain.Data;
-import com.Domain.Message;
-import com.Domain.PieChartData;
-import com.Domain.User;
+import com.Domain.*;
 import com.Repos.DataDao;
 import com.Repos.MessageRepo;
 import com.Repos.PieChartRepo;
 import com.Services.MessageService;
+import com.Services.MySubjectsService;
 import com.Services.UserService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -35,6 +33,9 @@ public class DashboardController {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private MySubjectsService mySubjectsService;
+
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String getDashboard(Model model) {
         Page<User> data = userService.findAll();
@@ -45,8 +46,14 @@ public class DashboardController {
         long allBooks = messageData.getTotalElements();
         List<Message> bookList = messageData.getContent();
 
+        Page<MySubjects> mySubjects = mySubjectsService.listAll();
+        long allSubjects = mySubjects.getTotalElements();
+        List<MySubjects> mySubjectsList = mySubjects.getContent();
+
+
         model.addAttribute("allUsers", allUsers);
         model.addAttribute("allBooks", allBooks);
+        model.addAttribute("allSubjects", allSubjects);
         return "dashboard";
     }
 

@@ -1,7 +1,8 @@
 <#include "security.ftl">
+<#import "/spring.ftl" as spring/>
 <#import "login.ftl" as l>
 
-<nav class="navbar navbar-expand-lg" style="width: 100%;background: #fff;z-index: 1050;"><!-- Navbar Goes Here -->
+<nav class="navbar navbar-expand-lg" style="width: 100%;background: #ffffff;z-index: 1050;"><!-- Navbar Goes Here -->
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 					    <span class="navbar-toggler-icon">
@@ -43,6 +44,30 @@
             <li class="nav-item">
                 <a href="#" class="ml-3 btn" style="font-size: 18px; color:#000"><i class="fa fa-home"></i></a>
             </li>
+
+            <li>
+                <select id="locales">
+                    <option value=""></option>
+                    <option value="en"><@spring.message "main.eng"/></option>
+                    <option value="ru"><@spring.message "main.ru"/></option>
+                    <option value="uz"><@spring.message "main.uz"/></option>
+                </select>
+            </li>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption != ''){
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
         </ul>
 
 
