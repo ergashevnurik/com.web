@@ -374,7 +374,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/quiz/">
                     <i class="fas fa-text-height"></i>
                     <p><@spring.message "menu.training" /></p>
                 </a>
